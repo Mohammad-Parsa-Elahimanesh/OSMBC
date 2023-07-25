@@ -2,7 +2,6 @@ package backend.block.mario;
 
 import backend.Manager;
 import backend.block.Block;
-import backend.block.Saleable;
 import backend.block.brick.Spring;
 import backend.block.enemy.Enemy;
 import backend.block.item.*;
@@ -13,7 +12,7 @@ import java.awt.*;
 import java.util.EnumMap;
 import java.util.Map;
 
-public abstract class Mario extends Block implements Saleable {
+public class Mario extends Block {
     static final double FRICTION = 0.7;
     final Manager manager = Manager.getInstance();
     public int heart = 3;
@@ -25,7 +24,7 @@ public abstract class Mario extends Block implements Saleable {
     double shotCooldown = 0.0, saberShotCooldown = 0.0, upAndDownBoth = 0.0;
     private boolean dieASAP;
 
-    Mario() {
+    public Mario() {
         super(1, 1, 0, 2);
         W = H = 1;
         X = 0;
@@ -214,5 +213,10 @@ public abstract class Mario extends Block implements Saleable {
             new FireRing(this).draw(g, cameraLeftLine);
     }
 
+    @Override
+    public String getImageName() {
+        return (isDirection(Block.Direction.DOWN) && state != MarioState.mini ? "Seating" : "") +
+                (state == MarioState.giga ? "Giga" : "") + "Mario.png";
+    }
 }
 

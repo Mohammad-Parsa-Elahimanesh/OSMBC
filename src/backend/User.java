@@ -1,8 +1,5 @@
 package backend;
 
-import backend.block.Saleable;
-import backend.block.mario.Mario;
-import backend.block.mario.SimpleMario;
 import backend.gamePlay.Game;
 
 import java.util.ArrayList;
@@ -20,20 +17,6 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
-        buy(new SimpleMario());
-    }
-
-    public List<Mario> Marios() {
-        List<Mario> marios = new ArrayList<>();
-        for (String have : bought)
-            for (Saleable mario : SuperMario.saleable)
-                if ((mario instanceof Mario) && mario.getName().equals(have))
-                    marios.add((Mario) mario);
-        return marios;
-    }
-
-    public void buy(Saleable sold) {
-        bought.add(sold.getName());
     }
 
     public void runGame(int index) {

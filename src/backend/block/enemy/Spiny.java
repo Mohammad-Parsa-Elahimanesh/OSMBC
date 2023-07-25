@@ -1,7 +1,7 @@
 package backend.block.enemy;
 
 import backend.Manager;
-import backend.block.mario.SimpleMario;
+import backend.block.mario.Mario;
 
 public class Spiny extends Enemy {
     public Spiny(double x, double y) {
@@ -9,7 +9,7 @@ public class Spiny extends Enemy {
     }
 
     private static double getNormalSpeed() {
-        return new SimpleMario().getSpeed() * 0.5;
+        return new Mario().getSpeed() * 0.5;
     }
 
     @Override

@@ -1,10 +1,6 @@
 package frontend.menu.shop;
 
 import backend.Manager;
-import backend.block.mario.CoinerMario;
-import backend.block.mario.FasterMario;
-import backend.block.mario.JumperMario;
-import backend.block.mario.KillerMario;
 import frontend.menu.MainMenu;
 import frontend.tile.TileButton;
 import frontend.tile.TileLabel;
@@ -31,10 +27,6 @@ public class Shop extends JFrame {
             }
         gridPanel[0][0].add(showCoin());
         gridPanel[1][0].add(backButton());
-        gridPanel[0][1].add(new AD(new CoinerMario(), manager.currentUser()));
-        gridPanel[0][2].add(new AD(new JumperMario(), manager.currentUser()));
-        gridPanel[1][1].add(new AD(new FasterMario(), manager.currentUser()));
-        gridPanel[1][2].add(new AD(new KillerMario(), manager.currentUser()));
         add(panel);
         setVisible(true);
     }

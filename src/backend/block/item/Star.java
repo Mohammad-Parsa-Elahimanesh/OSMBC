@@ -2,7 +2,7 @@ package backend.block.item;
 
 import backend.Manager;
 import backend.block.Block;
-import backend.block.mario.SimpleMario;
+import backend.block.mario.Mario;
 import backend.gamePlay.Section;
 
 public class Star extends Item {
@@ -17,11 +17,11 @@ public class Star extends Item {
         if (push(Block.Direction.DOWN) == 0 && old > 3) onGround += Section.delay;
         else onGround = 0;
         if (onGround > 1)
-            vy += new SimpleMario().getJumpSpeed() / 1.5;
+            vy += new Mario().getJumpSpeed() / 1.5;
         if (old < 3) {
             old += Section.delay;
             if (old >= 3)
-                vx = new SimpleMario().getSpeed() / 2.0;
+                vx = new Mario().getSpeed() / 2.0;
         }
 
         super.update();

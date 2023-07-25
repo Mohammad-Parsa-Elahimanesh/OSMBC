@@ -1,12 +1,12 @@
 package backend.block.enemy;
 
 import backend.Manager;
-import backend.block.mario.SimpleMario;
+import backend.block.mario.Mario;
 
 public class Goomba extends Enemy {
     public Goomba(double x, double y) {
         super(0.8, 0.8, x, y);
-        vx = new SimpleMario().getSpeed() * 0.6;
+        vx = new Mario().getSpeed() * 0.6;
     }
 
     @Override

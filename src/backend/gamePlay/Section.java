@@ -64,13 +64,18 @@ public class Section {
         endPipe.destination = original;
     }
 
-    static Section makeSections(Mario mario) throws Exception {
-        Section section0 = new Section(0, mario, "learn");
-        Section section1 = new Section(1, mario, "explore");
-        Section section2 = new Section(2, mario, "fight");
-        section0.nextSection = section1;
-        section1.nextSection = section2;
-        return section0;
+    static Section makeSections(Mario mario) {
+        try {
+            Section section0 = new Section(0, mario, "learn");
+            Section section1 = new Section(1, mario, "explore");
+            Section section2 = new Section(2, mario, "fight");
+            section0.nextSection = section1;
+            section1.nextSection = section2;
+            return section0;
+        } catch (Exception e) {
+            System.err.println("Can not make Sections Correctly!");
+        }
+        return null;
     }
 
     public int getLength() {

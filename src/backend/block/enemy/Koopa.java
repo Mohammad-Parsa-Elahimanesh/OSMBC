@@ -1,7 +1,7 @@
 package backend.block.enemy;
 
 import backend.Manager;
-import backend.block.mario.SimpleMario;
+import backend.block.mario.Mario;
 import backend.gamePlay.Section;
 
 import static java.lang.Math.max;
@@ -17,7 +17,7 @@ public class Koopa extends Enemy {
     }
 
     private static double getNormalSpeed() {
-        return new SimpleMario().getSpeed() * 0.4;
+        return new Mario().getSpeed() * 0.4;
     }
 
     int scoreWhenBeKilled() {

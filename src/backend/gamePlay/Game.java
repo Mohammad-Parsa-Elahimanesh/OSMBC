@@ -4,7 +4,6 @@ import backend.Manager;
 import backend.block.mario.Mario;
 import frontend.menu.MainMenu;
 import frontend.menu.game.GameFrame;
-import frontend.menu.game.SetGameSettings;
 
 
 public class Game {
@@ -12,10 +11,11 @@ public class Game {
     public GameFrame gameFrame = new GameFrame();
     public Section currentSection;
     Manager manager = Manager.getInstance();
-    Difficulty difficulty;
 
     public Game() {
-        new SetGameSettings();
+        currentSection = Section.makeSections(new Mario());
+        gameFrame.setVisible(true);
+        currentSection.timer.start();
     }
 
     public static String state(Game game) {
@@ -23,13 +23,6 @@ public class Game {
             return "New Game";
         else
             return game.state();
-    }
-
-    public void constructor(Mario mario, Difficulty difficulty) throws Exception {
-        this.difficulty = difficulty;
-        currentSection = Section.makeSections(mario);
-        gameFrame.setVisible(true);
-        currentSection.timer.start();
     }
 
     void endGame() {
@@ -42,12 +35,6 @@ public class Game {
 
     String state() {
         return "Section: " + currentSection;
-    }
-
-    public enum Difficulty {
-        EASY,
-        MEDIUM,
-        HARD
     }
 
 }

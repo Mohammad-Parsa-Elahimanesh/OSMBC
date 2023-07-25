@@ -17,6 +17,7 @@ public abstract class Block {
     static final double G = 35;
     static final double MAX_MOVE = 0.8;
     static final double EPS = 0.01;
+    static final String MIRRORED = "MIRRORED";
     static Map<String, BufferedImage> images = new HashMap<>();
     public double X, W, H, Y;
     protected double vx = 0;
@@ -94,7 +95,6 @@ public abstract class Block {
         return mirrorImage;
     }
 
-    static final String MIRRORED = "MIRRORED";
     public Image getImage() {
         if (!images.containsKey(getImageName())) {
             try {
