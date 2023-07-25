@@ -5,7 +5,7 @@ import backend.block.Block;
 import backend.block.Checkpoint;
 import backend.block.enemy.Enemy;
 import backend.block.item.Item;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 
 public class Fire extends Block {
     double alive = 1.1;
@@ -17,7 +17,7 @@ public class Fire extends Block {
 
     @Override
     public void update() {
-        alive -= Section.delay;
+        alive -= Section.DELAY;
         if (alive < 0)
             remove();
         for (Block block : Manager.getInstance().currentSection().blocks)
@@ -29,7 +29,7 @@ public class Fire extends Block {
                 remove();
                 break;
             }
-        X += vx * Section.delay;
+        X += vx * Section.DELAY;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package backend.gamePlay;
+package backend.game_play;
 
 import backend.Manager;
 import backend.block.Block;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Section {
-    public static final double delay = 0.03;
+    public static final double DELAY = 0.03;
 
     public final Mario mario;
     public final List<Checkpoint> savedCheckpoints = new ArrayList<>();
@@ -290,7 +290,7 @@ public class Section {
             marioDie();
         else if (mario.goNext())
             nextSection();
-        spentTime += Section.delay;
+        spentTime += Section.DELAY;
     }
 
     void nextSection() {
@@ -313,7 +313,7 @@ public class Section {
         return name;
     }
 
-    public Timer timer = new Timer((int) (delay * 1000), e -> {
+    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
         manager.currentGame().gameFrame.repaint();
         manager.currentSection().update();
     }) {

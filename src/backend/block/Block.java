@@ -1,7 +1,7 @@
 package backend.block;
 
 import backend.Manager;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -142,7 +142,7 @@ public abstract class Block {
     public void update() {
         if (doesGravityAffects()) {
             if (push(Direction.DOWN) > 0)
-                vy -= Section.delay * G;
+                vy -= Section.DELAY * G;
             else if (vy < 0)
                 vy = 0;
         }
@@ -151,7 +151,7 @@ public abstract class Block {
         if (Math.abs(vy) < EPS && vy != 0) vy = EPS * (vy < 0 ? -1 : 1);
 
         if (vx < 0) {
-            double maxMove = -vx * Section.delay;
+            double maxMove = -vx * Section.DELAY;
             double canMove = maxMove;
             while (canMove > 0) {
                 canMove = min(maxMove, push(Direction.LEFT));
@@ -162,7 +162,7 @@ public abstract class Block {
                 pushed(Direction.LEFT);
         }
         if (vx > 0) {
-            double maxMove = vx * Section.delay;
+            double maxMove = vx * Section.DELAY;
             double canMove = maxMove;
             while (canMove > 0) {
                 canMove = min(maxMove, push(Direction.RIGHT));
@@ -174,7 +174,7 @@ public abstract class Block {
         }
 
         if (vy < 0) {
-            double maxMove = -vy * Section.delay;
+            double maxMove = -vy * Section.DELAY;
             double canMove = maxMove;
             while (canMove > 0) {
                 canMove = min(maxMove, push(Direction.DOWN));
@@ -185,7 +185,7 @@ public abstract class Block {
                 pushed(Direction.DOWN);
         }
         if (vy > 0) {
-            double maxMove = vy * Section.delay;
+            double maxMove = vy * Section.DELAY;
             double canMove = maxMove;
             while (canMove > 0) {
                 canMove = min(maxMove, push(Direction.UP));

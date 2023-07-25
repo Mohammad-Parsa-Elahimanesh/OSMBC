@@ -2,7 +2,7 @@ package backend.block.flag;
 
 import backend.Manager;
 import backend.block.Block;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 import frontend.menu.game.AudioPlayer;
 
 public class Flag extends Block {

@@ -5,7 +5,7 @@ import backend.block.Block;
 import backend.block.brick.Spring;
 import backend.block.enemy.Enemy;
 import backend.block.item.*;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 import frontend.menu.game.AudioPlayer;
 
 import java.awt.*;
@@ -149,7 +149,7 @@ public class Mario extends Block {
         vx *= FRICTION;
 
         if (task.get(Direction.DOWN) && task.get(Direction.UP)) {
-            upAndDownBoth += Section.delay;
+            upAndDownBoth += Section.DELAY;
             if (upAndDownBoth > 3)
                 saberShot();
         } else
@@ -167,9 +167,9 @@ public class Mario extends Block {
     public void update() {
         travelledDistance = (int) Math.max(travelledDistance, X);
         dieASAP = nextASAP = false;
-        shield = Math.max(0, shield - Section.delay);
-        shotCooldown = Math.max(0, shotCooldown - Section.delay);
-        saberShotCooldown = Math.max(0, saberShotCooldown - Section.delay);
+        shield = Math.max(0, shield - Section.DELAY);
+        shotCooldown = Math.max(0, shotCooldown - Section.DELAY);
+        saberShotCooldown = Math.max(0, saberShotCooldown - Section.DELAY);
         H = state == MarioState.mini || isDirection(Direction.DOWN) ? 1 : 2;
         updateSpeed();
         super.update();

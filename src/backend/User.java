@@ -1,15 +1,11 @@
 package backend;
 
-import backend.gamePlay.Game;
-
-import java.util.ArrayList;
-import java.util.List;
+import backend.game_play.Game;
 
 public class User {
     public final Game[] game = new Game[3];
     public final String name;
     public final String password;
-    public final List<String> bought = new ArrayList<>();
     public int coins = 0;
     public int maxRating = -1;
     public int currentGameIndex = -1;

@@ -1,4 +1,4 @@
-package backend.gamePlay;
+package backend.game_play;
 
 import backend.Manager;
 import backend.block.mario.Mario;

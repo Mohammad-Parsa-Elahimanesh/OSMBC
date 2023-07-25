@@ -1,7 +1,7 @@
 package frontend.menu;
 
 import backend.Manager;
-import backend.gamePlay.Game;
+import backend.game_play.Game;
 import frontend.menu.game.PlayMenu;
 import frontend.tile.TileButton;
 

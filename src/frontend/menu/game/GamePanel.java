@@ -2,7 +2,7 @@ package frontend.menu.game;
 
 import backend.Manager;
 import backend.block.Block;
-import backend.gamePlay.Game;
+import backend.game_play.Game;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -24,17 +24,18 @@ public class GamePanel extends JPanel {
     }
 
     public void paintInfo(Graphics g) {
-        g.setFont(new Font("Arial", Font.ITALIC, 40));
+        int scale = Manager.SCREEN_WIDTH/30;
+        g.setFont(new Font("Arial", Font.ITALIC, scale));
         g.setColor(Color.GREEN);
-        g.drawString("Time : " + (int) (manager.currentSection().getWholeTime() - manager.currentSection().getSpentTime()), 0, 40);
+        g.drawString("Time : " + (int) (manager.currentSection().getWholeTime() - manager.currentSection().getSpentTime()), 0, scale);
         g.setColor(Color.RED);
-        g.drawString("Heart: " + manager.currentMario().heart, 300, 40);
+        g.drawString("Heart: " + manager.currentMario().heart, 6*scale, scale);
         g.setColor(Color.BLUE);
-        g.drawString(Game.state(manager.currentGame()), 600, 40);
+        g.drawString(Game.state(manager.currentGame()), 12*scale, scale);
         g.setColor(Color.DARK_GRAY);
-        g.drawString("Score: " + manager.currentGame().score, 1030, 40);
+        g.drawString("Score: " + manager.currentGame().score, 20*scale, scale);
         g.setColor(Color.YELLOW);
-        g.drawString("Coins: " + manager.currentSection().getCoins(), 1300, 40);
+        g.drawString("Coins: " + manager.currentSection().getCoins(), 25*scale, scale);
 
     }
 

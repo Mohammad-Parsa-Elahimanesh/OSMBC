@@ -2,7 +2,7 @@ package backend.block;
 
 import backend.Manager;
 import backend.block.enemy.KillerPlant;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 
 public class Pipe extends Block {
     public Section destination = null;

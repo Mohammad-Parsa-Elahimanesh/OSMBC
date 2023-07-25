@@ -1,11 +1,9 @@
 package frontend.menu;
 
 import backend.Manager;
-import backend.block.mario.Mario;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class Profile extends JFrame {
     Profile() {

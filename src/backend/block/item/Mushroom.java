@@ -3,7 +3,7 @@ package backend.block.item;
 import backend.Manager;
 import backend.block.Block;
 import backend.block.mario.Mario;
-import backend.gamePlay.Section;
+import backend.game_play.Section;
 
 public class Mushroom extends Item {
     double old = 0;
@@ -15,7 +15,7 @@ public class Mushroom extends Item {
     @Override
     public void update() {
         if (old < 3) {
-            old += Section.delay;
+            old += Section.DELAY;
             if (old > 3)
                 vx = new Mario().getSpeed() / 2.0;
         }
