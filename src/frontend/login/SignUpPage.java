@@ -4,14 +4,13 @@ import backend.Manager;
 import backend.User;
 import frontend.GameFrame;
 import frontend.Massage;
-import frontend.tile.TileButton;
-import frontend.tile.TileTextField;
+import frontend.Tools;
 
 import javax.swing.*;
 
 public class SignUpPage extends GameFrame {
-    TileTextField userName = userNameField();
-    TileTextField password = passwordField();
+    JTextField userName = userNameField();
+    JTextField password = passwordField();
 
     SignUpPage() {
         super();
@@ -24,46 +23,38 @@ public class SignUpPage extends GameFrame {
         setVisible(true);
     }
 
-    TileTextField userNameField() {
-        TileTextField userNameField = new TileTextField();
-        userNameField.setTileLocation(10, 5);
-        userNameField.setTileSize(4, 1);
+    JTextField userNameField() {
+        JTextField userNameField = Tools.tileTextField(10,5,4,1);
         userNameField.setText("User Name");
         return userNameField;
     }
 
-    TileTextField passwordField() {
-        TileTextField passwordField = new TileTextField();
-        passwordField.setTileLocation(10, 7);
-        passwordField.setTileSize(4, 1);
+    JTextField passwordField() {
+        JTextField passwordField = Tools.tileTextField(10,7,4,1);
         passwordField.setText("Password");
         return passwordField;
     }
 
-    TileButton enterButton() {
-        TileButton enterButton = new TileButton();
+    JButton enterButton() {
+        JButton enterButton = Tools.tileButton(10,9,4,1);
         enterButton.setText("Enter");
-        enterButton.setTileLocation(10, 9);
-        enterButton.setTileSize(4, 1);
         enterButton.addActionListener(e -> {
-            for (User user : Manager.getInstance().superMario.users)
+            for (User user : Manager.superMario.users)
                 if (user.name.equals(userName.getText())) {
                     new Massage("user already exists");
                     return;
                 }
             User user = new User(userName.getText(), password.getText());
-            Manager.getInstance().superMario.users.add(user);
+            Manager.superMario.users.add(user);
             SignInPage.signIn(user);
             dispose();
         });
         return enterButton;
     }
 
-    TileButton backButton() {
-        TileButton backButton = new TileButton();
+    JButton backButton() {
+        JButton backButton = Tools.tileButton(10,11,4,1);
         backButton.setText("Back");
-        backButton.setTileLocation(10, 11);
-        backButton.setTileSize(4, 1);
         backButton.addActionListener(e -> {
             new EnterPage();
             dispose();

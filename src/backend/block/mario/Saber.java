@@ -22,7 +22,7 @@ public class Saber extends Block {
             vx *= -1;
             alive = 8;
         }
-        for (Block block : Manager.getInstance().currentSection().blocks)
+        for (Block block : Manager.currentSection().blocks)
             if (isIntersect(block)) {
                 if (block instanceof Item)
                     continue;

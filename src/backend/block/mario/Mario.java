@@ -14,7 +14,6 @@ import java.util.Map;
 
 public class Mario extends Block {
     static final double FRICTION = 0.7;
-    final Manager manager = Manager.getInstance();
     public int heart = 3;
     public Map<Direction, Boolean> task = new EnumMap<>(Direction.class);
     public MarioState state = MarioState.mini;
@@ -90,21 +89,21 @@ public class Mario extends Block {
         switch (state) {
             case mini -> state = MarioState.mega;
             case mega -> state = MarioState.giga;
-            case giga -> manager.currentGame().score += 100;
+            case giga -> Manager.currentGame().score += 100;
         }
     }
 
     public void shot() {
         if (state == MarioState.giga && shotCooldown == 0 && push(Direction.DOWN) == 0) {
-            manager.currentSection().add(new Fire(this));
+            Manager.currentSection().add(new Fire(this));
             shotCooldown = 3;
         }
     }
 
     private void saberShot() {
-        if (saberShotCooldown == 0 && manager.currentUser().coins >= 3) {
-            manager.currentSection().add(new Saber(this));
-            manager.currentUser().coins -= 3;
+        if (saberShotCooldown == 0 && Manager.currentUser().coins >= 3) {
+            Manager.currentSection().add(new Saber(this));
+            Manager.currentUser().coins -= 3;
             saberShotCooldown = 5;
         }
     }
@@ -125,19 +124,19 @@ public class Mario extends Block {
             else {
                 dieASAP = true;
                 if (state == MarioState.mini)
-                    manager.currentGame().score = Math.max(manager.currentGame().score - 20, 0);
+                    Manager.currentGame().score = Math.max(Manager.currentGame().score - 20, 0);
             }
         } else if (block instanceof Item && !(block instanceof Coin)) {
             upgrade();
             block.remove();
             if (block instanceof Flower)
-                manager.currentGame().score += 20;
+                Manager.currentGame().score += 20;
             else if (block instanceof Mushroom)
-                manager.currentGame().score += 30;
+                Manager.currentGame().score += 30;
             else if (block instanceof Star) {
-                manager.currentGame().score += 40;
+                Manager.currentGame().score += 40;
                 shield = 15;
-                AudioPlayer.getInstance().playSound("shield");
+                AudioPlayer.playSound("shield");
             }
         } else if (block instanceof Spring) {
             vy = getJumpSpeed() * 1.3;
@@ -184,7 +183,7 @@ public class Mario extends Block {
     }
 
     void checkIntersection() {
-        for (Block block : manager.currentSection().blocks)
+        for (Block block : Manager.currentSection().blocks)
             if (isIntersect(block))
                 intersect(block);
     }
@@ -192,17 +191,17 @@ public class Mario extends Block {
     void checkGameState() {
         if (Y + H < 0) {
             dieASAP = true;
-            manager.currentGame().score = Math.max(manager.currentGame().score - 30, 0);
-        } else if (manager.currentSection().getWholeTime() <= manager.currentSection().getSpentTime())
+            Manager.currentGame().score = Math.max(Manager.currentGame().score - 30, 0);
+        } else if (Manager.currentSection().getWholeTime() <= Manager.currentSection().getSpentTime())
             dieASAP = true;
     }
 
     void checkGetCoins() {
-        for (Block coin : manager.currentSection().blocks)
+        for (Block coin : Manager.currentSection().blocks)
             if (coin instanceof Coin && distance(coin) <= getCoinRange()) {
                 coin.remove();
-                manager.currentSection().getCoin(1);
-                manager.currentGame().score += 10;
+                Manager.currentSection().getCoin(1);
+                Manager.currentGame().score += 10;
             }
     }
 

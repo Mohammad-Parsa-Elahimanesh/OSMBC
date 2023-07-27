@@ -26,7 +26,7 @@ public class Mushroom extends Item {
     protected boolean pushed(Block.Direction side) {
         if ((vx < 0 && side == Direction.LEFT) || (vx > 0 && side == Direction.RIGHT))
             vx *= -1;
-        return neighbor(Manager.getInstance().currentMario());
+        return neighbor(Manager.currentMario());
     }
 
     @Override

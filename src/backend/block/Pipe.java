@@ -21,14 +21,14 @@ public class Pipe extends Block {
 
     @Override
     protected boolean pushed(Direction side) {
-        if (neighbor(Manager.getInstance().currentMario(), Direction.UP) && Manager.getInstance().currentMario().isDirection(Direction.DOWN) && destination != null) {
-            Manager.getInstance().currentSection().timer.stop();
-            Manager.getInstance().currentMario().Y += 0.5;
-            destination.mario.state = Manager.getInstance().currentMario().state;
-            destination.mario.heart = Manager.getInstance().currentMario().heart;
-            Manager.getInstance().currentGame().currentSection = destination;
+        if (neighbor(Manager.currentMario(), Direction.UP) && Manager.currentMario().isDirection(Direction.DOWN) && destination != null) {
+            Manager.currentSection().timer.stop();
+            Manager.currentMario().Y += 0.5;
+            destination.mario.state = Manager.currentMario().state;
+            destination.mario.heart = Manager.currentMario().heart;
+            Manager.currentGame().currentSection = destination;
             destination = null;
-            Manager.getInstance().currentSection().timer.start();
+            Manager.currentSection().timer.start();
         }
 
         return false;

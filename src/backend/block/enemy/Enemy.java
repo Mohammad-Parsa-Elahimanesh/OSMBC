@@ -18,9 +18,9 @@ public abstract class Enemy extends Block {
 
     public void Die() {
 
-        AudioPlayer.getInstance().playSound("enemyDeath");
-        Manager.getInstance().currentSection().getCoin(3);
-        Manager.getInstance().currentGame().score += scoreWhenBeKilled();
+        AudioPlayer.playSound("enemyDeath");
+        Manager.currentSection().getCoin(3);
+        Manager.currentGame().score += scoreWhenBeKilled();
         remove();
     }
 }

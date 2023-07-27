@@ -27,7 +27,6 @@ public class Section {
     final String name;
     private final List<Block> mustBeAdded = new ArrayList<>();
     private final List<Block> mustBeRemoved = new ArrayList<>();
-    private final Manager manager = Manager.getInstance();
     private int length;
     private int wholeTime;
     private Section nextSection;
@@ -237,9 +236,9 @@ public class Section {
     }
 
     void sectionReward() {
-        manager.currentGame().score += (wholeTime - spentTime) * mario.getPowerLevel();
-        manager.currentGame().score += mario.heart * 20 * mario.getPowerLevel();
-        manager.currentUser().coins += coins;
+        Manager.currentGame().score += (wholeTime - spentTime) * mario.getPowerLevel();
+        Manager.currentGame().score += mario.heart * 20 * mario.getPowerLevel();
+        Manager.currentUser().coins += coins;
     }
 
     void marioDie() {
@@ -248,7 +247,7 @@ public class Section {
             mario.state = MarioState.mini;
         switch (mario.state) {
             case mini -> {
-                AudioPlayer.getInstance().playSound("marioDeath");
+                AudioPlayer.playSound("marioDeath");
                 spentTime = 0;
                 coins -= ((savedCheckpoints.size() + 1) * coins + progressRisk()) / (savedCheckpoints.size() + 4);
                 mario.reset();
@@ -264,7 +263,7 @@ public class Section {
                 mario.heart--;
                 if (mario.heart <= 0) {
                     timer.stop();
-                    manager.currentGame().endGame();
+                    Manager.currentGame().endGame();
                 }
                 return;
             }
@@ -295,16 +294,16 @@ public class Section {
 
     void nextSection() {
         timer.stop();
-        manager.currentSection().sectionReward();
+        Manager.currentSection().sectionReward();
         if (nextSection == null) {
             timer.stop();
-            manager.currentGame().endGame();
+            Manager.currentGame().endGame();
             return;
         }
         nextSection.mario.heart = mario.heart;
         nextSection.mario.state = mario.state;
-        manager.currentGame().currentSection = nextSection;
-        manager.currentSection().timer.start();
+        Manager.currentGame().currentSection = nextSection;
+        Manager.currentSection().timer.start();
 
     }
 
@@ -314,19 +313,19 @@ public class Section {
     }
 
     public Timer timer = new Timer((int) (DELAY * 1000), e -> {
-        manager.currentGame().gameFrame.repaint();
-        manager.currentSection().update();
+        Manager.currentGame().gameFrame.repaint();
+        Manager.currentSection().update();
     }) {
         @Override
         public void start() {
             super.start();
-            AudioPlayer.getInstance().setSilence(false);
+            AudioPlayer.setSilence(false);
         }
 
         @Override
         public void stop() {
             super.stop();
-            AudioPlayer.getInstance().setSilence(true);
+            AudioPlayer.setSilence(true);
         }
     };
 

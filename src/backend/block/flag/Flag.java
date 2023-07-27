@@ -19,13 +19,13 @@ public class Flag extends Block {
     @Override
     public void update() {
 
-        if (isIntersect(Manager.getInstance().currentMario()) || finished) {
+        if (isIntersect(Manager.currentMario()) || finished) {
             if (!finished)
-                AudioPlayer.getInstance().playSound("completeSection");
+                AudioPlayer.playSound("completeSection");
             finished = true;
             flagPicture.goUp();
             if (flagPicture.Y + flagPicture.H + 1.5 >= Y + H)
-                Manager.getInstance().currentMario().nextASAP = true;
+                Manager.currentMario().nextASAP = true;
         }
         super.update();
     }

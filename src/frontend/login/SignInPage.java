@@ -4,21 +4,20 @@ import backend.Manager;
 import backend.User;
 import frontend.GameFrame;
 import frontend.Massage;
+import frontend.Tools;
 import frontend.menu.MainMenu;
-import frontend.tile.TileButton;
-import frontend.tile.TileTextField;
 
 import javax.swing.*;
 
 public class SignInPage extends GameFrame {
-    TileTextField userName = userNameField();
-    TileTextField password = passwordField();
+    JTextField userName = userNameField();
+    JTextField password = passwordField();
 
     SignInPage() {
         super();
         JPanel panel = new JPanel(null);
         panel.add(userName);
-        panel.add(passwordField());
+        panel.add(password);
         panel.add(enterButton());
         panel.add(backButton());
         add(panel);
@@ -26,35 +25,29 @@ public class SignInPage extends GameFrame {
     }
 
     static void signIn(User user) {
-        Manager.getInstance().superMario.currentUser = user;
+        Manager.superMario.currentUser = user;
         new MainMenu();
     }
 
-    TileTextField userNameField() {
-        TileTextField userNameField = new TileTextField();
-        userNameField.setTileLocation(10, 5);
-        userNameField.setTileSize(4, 1);
+    JTextField userNameField() {
+        JTextField userNameField = Tools.tileTextField(10,5,4,1);
         userNameField.setText("User Name");
         return userNameField;
     }
 
-    TileTextField passwordField() {
-        TileTextField passwordField = new TileTextField();
-        passwordField.setTileLocation(10, 7);
-        passwordField.setTileSize(4, 1);
+    JTextField passwordField() {
+        JTextField passwordField = Tools.tileTextField(10,7,4,1);
         passwordField.setText("Password");
         return passwordField;
     }
 
-    TileButton enterButton() {
-        TileButton enterButton = new TileButton();
+    JButton enterButton() {
+        JButton enterButton = Tools.tileButton(10,9,4,1);
         enterButton.setText("Enter");
-        enterButton.setTileLocation(10, 9);
-        enterButton.setTileSize(4, 1);
         enterButton.addActionListener(e -> {
-            for (User user : Manager.getInstance().superMario.users)
+            for (User user : Manager.superMario.users)
                 if (user.name.equals(userName.getText())) {
-                    if (user.password.equals(password.getText())) {
+                    if (user.password == password.getText().hashCode()) {
                         signIn(user);
                         dispose();
                     } else {
@@ -67,11 +60,9 @@ public class SignInPage extends GameFrame {
         return enterButton;
     }
 
-    TileButton backButton() {
-        TileButton backButton = new TileButton();
+    JButton backButton() {
+        JButton backButton = Tools.tileButton(10,11,4,1);
         backButton.setText("Back");
-        backButton.setTileLocation(10, 11);
-        backButton.setTileSize(4, 1);
         backButton.addActionListener(e -> {
             dispose();
             new EnterPage();

@@ -1,8 +1,7 @@
 package frontend.login;
 
-import backend.Manager;
 import frontend.GameFrame;
-import frontend.tile.TileButton;
+import frontend.Tools;
 
 import javax.swing.*;
 
@@ -10,6 +9,7 @@ public class EnterPage extends GameFrame {
     public EnterPage() {
         super();
         JPanel panel = new JPanel(null);
+        panel.add(serverConnection());
         panel.add(signInButton());
         panel.add(signUpButton());
         panel.add(exitButton());
@@ -17,11 +17,26 @@ public class EnterPage extends GameFrame {
         setVisible(true);
     }
 
-    TileButton signInButton() {
-        TileButton signInButton = new TileButton();
+    JButton serverConnection() {
+        final String[] states = {"Connected", "Connecting ...", "Disconnected", "Disconnecting ..."};
+        JButton serverConnection = Tools.tileButton(10,2,4,2);
+        serverConnection.setText(states[2]);
+        serverConnection.addActionListener(e -> {
+            if(serverConnection.getText().equals(states[2]))
+            {
+                serverConnection.setText(states[1]);
+
+            } else if(serverConnection.getText().equals(states[0])) {
+                serverConnection.setText(states[3]);
+
+            }
+        });
+        return serverConnection;
+    }
+
+    JButton signInButton() {
+        JButton signInButton = Tools.tileButton(10,5,4,2);
         signInButton.setText("Sign In");
-        signInButton.setTileLocation(10, 4);
-        signInButton.setTileSize(4, 2);
         signInButton.addActionListener(e -> {
             new SignInPage();
             dispose();
@@ -29,11 +44,9 @@ public class EnterPage extends GameFrame {
         return signInButton;
     }
 
-    TileButton signUpButton() {
-        TileButton signUpButton = new TileButton();
+    JButton signUpButton() {
+        JButton signUpButton = Tools.tileButton(10,8,4,2);
         signUpButton.setText("Sign Up");
-        signUpButton.setTileLocation(10, 7);
-        signUpButton.setTileSize(4, 2);
         signUpButton.addActionListener(e -> {
             new SignUpPage();
             dispose();
@@ -41,11 +54,9 @@ public class EnterPage extends GameFrame {
         return signUpButton;
     }
 
-    TileButton exitButton() {
-        TileButton exitButton = new TileButton();
+    JButton exitButton() {
+        JButton exitButton = Tools.tileButton(10,11,4,2);
         exitButton.setText("Exit");
-        exitButton.setTileLocation(10, 10);
-        exitButton.setTileSize(4, 2);
         exitButton.addActionListener(e -> System.exit(0));
         return exitButton;
     }

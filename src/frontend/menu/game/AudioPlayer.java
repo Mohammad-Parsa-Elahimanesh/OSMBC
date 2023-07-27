@@ -6,21 +6,15 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class AudioPlayer {
-    private static final long serialVersionUID = 1L;
-    private static final AudioPlayer instance = new AudioPlayer();
-    public boolean silenceForever = false;
-    Clip background = getClip("background");
-    private boolean silence = true;
+    public static boolean silenceForever = false;
+    static final Clip background = getClip("background");
+    private static boolean silence = true;
 
-    private AudioPlayer() {
-    }
+    private AudioPlayer() {}
 
-    public static AudioPlayer getInstance() {
-        return instance;
-    }
 
-    public void setSilence(boolean silence) {
-        if (silence == this.silence || silenceForever)
+    public static void setSilence(boolean silence) {
+        if (silence == AudioPlayer.silence || silenceForever)
             return;
         if (silence)
             background.stop();
@@ -28,11 +22,11 @@ public class AudioPlayer {
             background.loop(Clip.LOOP_CONTINUOUSLY);
             background.start();
         }
-        this.silence = silence;
+        AudioPlayer.silence = silence;
     }
 
-    private Clip getClip(String name) {
-        Clip clip = null;
+    private static Clip getClip(String name) {
+        Clip clip;
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("Sounds//" + name + ".wav").getAbsoluteFile());
             clip = AudioSystem.getClip();
@@ -44,7 +38,7 @@ public class AudioPlayer {
         return clip;
     }
 
-    public void playSound(String name) {
+    public static void playSound(String name) {
         if (!silence && !silenceForever)
             getClip(name).start();
     }

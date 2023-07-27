@@ -7,6 +7,8 @@ import backend.game_play.Section;
 import java.awt.*;
 
 public class Manager {
+    public static final int serverPort = 50000;
+
     public static final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth() * 30 / 64;
     public static final int COLUMN = 24;
     public static final int SINGLE_BLOCK_WIDTH = SCREEN_WIDTH / COLUMN;
@@ -14,33 +16,28 @@ public class Manager {
     public static final int ROW = 16;
     public static final int SINGLE_BLOCK_HEIGHT = SCREEN_HEIGHT / ROW;
     public static Point location;
-    private static final Manager singleton = new Manager();
-    public SuperMario superMario;
+    public static SuperMario superMario;
 
     private Manager() {}
 
     public static void start(int locationPart) {
         location = new Point((locationPart&1)*(SCREEN_WIDTH+15), (locationPart/2)*(SCREEN_HEIGHT+15));
-        singleton.superMario = new SuperMario();
+        superMario = new SuperMario();
     }
 
-    public static Manager getInstance() {
-        return singleton;
-    }
-
-    public User currentUser() {
+    public static User currentUser() {
         return superMario.currentUser;
     }
 
-    public Game currentGame() {
+    public static Game currentGame() {
         return currentUser().game[currentUser().currentGameIndex];
     }
 
-    public Section currentSection() {
+    public static Section currentSection() {
         return currentGame().currentSection;
     }
 
-    public Mario currentMario() {
+    public static Mario currentMario() {
         return currentSection().mario;
     }
 

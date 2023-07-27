@@ -33,7 +33,7 @@ public class Star extends Item {
             vx *= -1;
         else if (side == Direction.UP && vy > 0)
             vy = 0;
-        return neighbor(Manager.getInstance().currentMario());
+        return neighbor(Manager.currentMario());
     }
 
     @Override

@@ -34,7 +34,7 @@ public abstract class Block {
     }
 
     public void remove() {
-        Manager.getInstance().currentSection().del(this);
+        Manager.currentSection().del(this);
     }
 
     protected Boolean inSide(Block other, Direction side) {
@@ -111,7 +111,7 @@ public abstract class Block {
 
     protected double push(Direction direction) {
         double canMove = MAX_MOVE;
-        for (Block block : Manager.getInstance().currentSection().blocks)
+        for (Block block : Manager.currentSection().blocks)
             if (neighbor(block, direction)) {
                 if (!block.pushed(direction.opposite()))
                     canMove = 0;

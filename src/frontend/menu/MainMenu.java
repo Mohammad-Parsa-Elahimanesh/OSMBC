@@ -1,11 +1,9 @@
 package frontend.menu;
 
-import backend.Manager;
 import frontend.GameFrame;
+import frontend.Tools;
 import frontend.login.EnterPage;
 import frontend.menu.game.PlayMenu;
-import frontend.menu.shop.Shop;
-import frontend.tile.TileButton;
 
 import javax.swing.*;
 
@@ -23,11 +21,9 @@ public class MainMenu extends GameFrame {
         setVisible(true);
     }
 
-    TileButton play() {
-        TileButton play = new TileButton();
+    JButton play() {
+        JButton play = Tools.tileButton(10,1,4,2);
         play.setText("Play");
-        play.setTileLocation(10, 1);
-        play.setTileSize(4, 2);
         play.addActionListener(e -> {
             new PlayMenu();
             dispose();
@@ -35,41 +31,33 @@ public class MainMenu extends GameFrame {
         return play;
     }
 
-    TileButton shop() {
-        TileButton shop = new TileButton();
+    JButton shop() {
+        JButton shop = Tools.tileButton(10,4,4,2);
         shop.setText("Shop");
-        shop.setTileLocation(10, 4);
-        shop.setTileSize(4, 2);
         shop.addActionListener(e -> {
-            new Shop();
-            dispose();
+            //new Shop();
+            //dispose();
         });
         return shop;
     }
 
-    TileButton profile() {
-        TileButton profile = new TileButton();
+    JButton profile() {
+        JButton profile = Tools.tileButton(10,7,4,2);
         profile.setText("Profile");
-        profile.setTileLocation(10, 7);
-        profile.setTileSize(4, 2);
         profile.addActionListener(e -> new Profile());
         return profile;
     }
 
-    TileButton leaderBoard() {
-        TileButton leaderBoard = new TileButton();
+    JButton leaderBoard() {
+        JButton leaderBoard = Tools.tileButton(10,10,4,2);
         leaderBoard.setText("Leaderboard");
-        leaderBoard.setTileLocation(10, 10);
-        leaderBoard.setTileSize(4, 2);
         leaderBoard.addActionListener(e -> new LeaderBoard());
         return leaderBoard;
     }
 
-    TileButton back() {
-        TileButton back = new TileButton();
+    JButton back() {
+        JButton back = Tools.tileButton(10,13,4,2);
         back.setText("Back");
-        back.setTileLocation(10, 13);
-        back.setTileSize(4, 2);
         back.addActionListener(e -> {
             new EnterPage();
             dispose();
@@ -77,4 +65,3 @@ public class MainMenu extends GameFrame {
         return back;
     }
 }
-

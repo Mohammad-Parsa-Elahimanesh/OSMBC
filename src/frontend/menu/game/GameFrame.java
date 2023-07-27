@@ -9,8 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameFrame extends frontend.GameFrame {
-    private final transient Manager manager = Manager.getInstance();
-
     public GameFrame() {
         super();
         setContentPane(new GamePanel());
@@ -22,28 +20,28 @@ public class GameFrame extends frontend.GameFrame {
         return new KeyListener() {
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_SPACE)
-                    manager.currentMario().shot();
-                if (manager.currentSection().timer.isRunning() && e.getKeyChar() == KeyEvent.VK_ESCAPE) {
-                    manager.currentSection().timer.stop();
+                    Manager.currentMario().shot();
+                if (Manager.currentSection().timer.isRunning() && e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+                    Manager.currentSection().timer.stop();
                     new ExitOrResume();
                 }
             }
 
             public void keyPressed(KeyEvent e) {
                 switch (e.getExtendedKeyCode()) {
-                    case KeyEvent.VK_LEFT -> manager.currentMario().task.put(Block.Direction.LEFT, true);
-                    case KeyEvent.VK_UP -> manager.currentMario().task.put(Block.Direction.UP, true);
-                    case KeyEvent.VK_RIGHT -> manager.currentMario().task.put(Block.Direction.RIGHT, true);
-                    case KeyEvent.VK_DOWN -> manager.currentMario().task.put(Block.Direction.DOWN, true);
+                    case KeyEvent.VK_LEFT -> Manager.currentMario().task.put(Block.Direction.LEFT, true);
+                    case KeyEvent.VK_UP -> Manager.currentMario().task.put(Block.Direction.UP, true);
+                    case KeyEvent.VK_RIGHT -> Manager.currentMario().task.put(Block.Direction.RIGHT, true);
+                    case KeyEvent.VK_DOWN -> Manager.currentMario().task.put(Block.Direction.DOWN, true);
                 }
             }
 
             public void keyReleased(KeyEvent e) {
                 switch (e.getExtendedKeyCode()) {
-                    case KeyEvent.VK_LEFT -> manager.currentMario().task.put(Block.Direction.LEFT, false);
-                    case KeyEvent.VK_UP -> manager.currentMario().task.put(Block.Direction.UP, false);
-                    case KeyEvent.VK_RIGHT -> manager.currentMario().task.put(Block.Direction.RIGHT, false);
-                    case KeyEvent.VK_DOWN -> manager.currentMario().task.put(Block.Direction.DOWN, false);
+                    case KeyEvent.VK_LEFT -> Manager.currentMario().task.put(Block.Direction.LEFT, false);
+                    case KeyEvent.VK_UP -> Manager.currentMario().task.put(Block.Direction.UP, false);
+                    case KeyEvent.VK_RIGHT -> Manager.currentMario().task.put(Block.Direction.RIGHT, false);
+                    case KeyEvent.VK_DOWN -> Manager.currentMario().task.put(Block.Direction.DOWN, false);
                 }
             }
         };

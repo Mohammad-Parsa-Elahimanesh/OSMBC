@@ -30,10 +30,10 @@ public class Goomba extends Enemy {
 
     @Override
     protected boolean pushed(Direction side) {
-        if (neighbor(Manager.getInstance().currentMario(), Direction.UP)) {
+        if (neighbor(Manager.currentMario(), Direction.UP)) {
             Die();
         } else if ((vx < 0 && side == Direction.LEFT) || (vx > 0 && side == Direction.RIGHT))
             vx *= -1;
-        return neighbor(Manager.getInstance().currentMario(), side) && side != Direction.UP;
+        return neighbor(Manager.currentMario(), side) && side != Direction.UP;
     }
 }

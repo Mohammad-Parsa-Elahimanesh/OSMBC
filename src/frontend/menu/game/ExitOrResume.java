@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class ExitOrResume extends GameFrame {
     ExitOrResume() {
-        Manager.getInstance().currentMario().reset();
+        Manager.currentMario().reset();
         setSize(200, 100);
         setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2+Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2+Manager.location.y);
         JPanel panel = new JPanel();
@@ -33,10 +33,10 @@ public class ExitOrResume extends GameFrame {
     }
 
     JButton soundControl() {
-        JButton sound = new JButton(AudioPlayer.getInstance().silenceForever ? "turn on sound" : "turn off sound");
+        JButton sound = new JButton(AudioPlayer.silenceForever ? "turn on sound" : "turn off sound");
         sound.addActionListener(e -> {
-            AudioPlayer.getInstance().silenceForever = !AudioPlayer.getInstance().silenceForever;
-            sound.setText(AudioPlayer.getInstance().silenceForever ? "turn on sound" : "turn off sound");
+            AudioPlayer.silenceForever = !AudioPlayer.silenceForever;
+            sound.setText(AudioPlayer.silenceForever ? "turn on sound" : "turn off sound");
         });
         return sound;
     }
@@ -44,7 +44,7 @@ public class ExitOrResume extends GameFrame {
     JButton resumeGame() {
         JButton resumeGame = new JButton("Continue ...");
         resumeGame.addActionListener(e -> {
-            Manager.getInstance().currentSection().timer.start();
+            Manager.currentSection().timer.start();
             dispose();
         });
         return resumeGame;

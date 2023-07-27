@@ -2,8 +2,8 @@ package frontend.menu;
 
 import backend.Manager;
 import backend.game_play.Game;
+import frontend.Tools;
 import frontend.menu.game.PlayMenu;
-import frontend.tile.TileButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,21 +17,17 @@ public class LoadGamePanel extends JPanel {
         indexGame = indexGameInit;
         playMenu = playMenuInit;
         setLayout(new BorderLayout());
-        TileButton loadGame = new TileButton();
-        loadGame.setText(Game.state(Manager.getInstance().currentUser().game[indexGame]));
-        loadGame.setTileSize(8, 12);
-        loadGame.setTileLocation(0, 0);
+        JButton loadGame = Tools.tileButton(0,0,8,12);
+        loadGame.setText(Game.state(Manager.currentUser().game[indexGame]));
         loadGame.addActionListener(e -> {
             playMenu.dispose();
-            Manager.getInstance().currentUser().runGame(indexGame);
+            Manager.currentUser().runGame(indexGame);
         });
 
-        TileButton clear = new TileButton();
-        clear.setTileSize(8, 4);
-        clear.setTileLocation(0, 12);
+        JButton clear = Tools.tileButton(0,12,8,4);
         clear.setText("Clear");
         clear.addActionListener(e -> {
-            Manager.getInstance().currentUser().game[indexGame] = null;
+            Manager.currentUser().game[indexGame] = null;
             loadGame.setText(Game.state(null));
         });
 

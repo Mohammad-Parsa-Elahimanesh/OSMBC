@@ -47,7 +47,7 @@ public class Koopa extends Enemy {
 
     @Override
     protected boolean pushed(Direction side) {
-        if (neighbor(Manager.getInstance().currentMario(), Direction.UP)) {
+        if (neighbor(Manager.currentMario(), Direction.UP)) {
             if (0 < freeze && freeze < 2.6) {
                 Die();
             } else {
@@ -56,6 +56,6 @@ public class Koopa extends Enemy {
             }
         } else if ((vx < 0 && side == Direction.LEFT) || (vx > 0 && side == Direction.RIGHT))
             vx *= -1;
-        return neighbor(Manager.getInstance().currentMario(), side) && side != Direction.UP && freeze == 0;
+        return neighbor(Manager.currentMario(), side) && side != Direction.UP && freeze == 0;
     }
 }

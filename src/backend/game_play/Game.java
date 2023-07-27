@@ -10,8 +10,7 @@ public class Game {
     public int score = 0;
     public GameFrame gameFrame = new GameFrame();
     public Section currentSection;
-    Manager manager = Manager.getInstance();
-
+    
     public Game() {
         currentSection = Section.makeSections(new Mario());
         gameFrame.setVisible(true);
@@ -26,9 +25,9 @@ public class Game {
     }
 
     void endGame() {
-        if (manager.currentUser().maxRating < score)
-            manager.currentUser().maxRating = score;
-        manager.currentUser().game[manager.currentUser().currentGameIndex] = null;
+        if (Manager.currentUser().maxRating < score)
+            Manager.currentUser().maxRating = score;
+        Manager.currentUser().game[Manager.currentUser().currentGameIndex] = null;
         gameFrame.dispose();
         new MainMenu();
     }

@@ -20,16 +20,16 @@ public class Solid extends Brick {
 
     @Override
     protected boolean pushed(Direction side) {
-        if (neighbor(Manager.getInstance().currentMario(), Direction.DOWN)) {
-            Manager.getInstance().currentGame().score += 1;
+        if (neighbor(Manager.currentMario(), Direction.DOWN)) {
+            Manager.currentGame().score += 1;
             if (solidType == SolidType.Coins && used < 5) {
-                Manager.getInstance().currentSection().add(new Coin(X, Y + 1));
+                Manager.currentSection().add(new Coin(X, Y + 1));
                 used++;
             } else if (solidType == SolidType.Prize) {
-                Manager.getInstance().currentSection().add(Item.RandomItem(X, Y + 1));
+                Manager.currentSection().add(Item.RandomItem(X, Y + 1));
                 solidType = SolidType.Simple;
             } else
-                Manager.getInstance().currentGame().score -= 1;
+                Manager.currentGame().score -= 1;
         }
         return false;
     }
