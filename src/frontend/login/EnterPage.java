@@ -1,17 +1,15 @@
 package frontend.login;
 
 import backend.Manager;
+import frontend.GameFrame;
 import frontend.tile.TileButton;
 
 import javax.swing.*;
 
-public class EnterPage extends JFrame {
+public class EnterPage extends GameFrame {
     public EnterPage() {
         super();
         JPanel panel = new JPanel(null);
-        setUndecorated(true);
-
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         panel.add(signInButton());
         panel.add(signUpButton());
         panel.add(exitButton());

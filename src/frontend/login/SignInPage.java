@@ -2,6 +2,7 @@ package frontend.login;
 
 import backend.Manager;
 import backend.User;
+import frontend.GameFrame;
 import frontend.Massage;
 import frontend.menu.MainMenu;
 import frontend.tile.TileButton;
@@ -9,15 +10,13 @@ import frontend.tile.TileTextField;
 
 import javax.swing.*;
 
-public class SignInPage extends JFrame {
+public class SignInPage extends GameFrame {
     TileTextField userName = userNameField();
     TileTextField password = passwordField();
 
     SignInPage() {
         super();
         JPanel panel = new JPanel(null);
-        setUndecorated(true);
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         panel.add(userName);
         panel.add(passwordField());
         panel.add(enterButton());

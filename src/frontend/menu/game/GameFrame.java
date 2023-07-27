@@ -8,15 +8,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends frontend.GameFrame {
     private final transient Manager manager = Manager.getInstance();
 
     public GameFrame() {
         super();
         setContentPane(new GamePanel());
         setBackground(Color.cyan);
-        setUndecorated(true);
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         addKeyListener(keyListener());
     }
 

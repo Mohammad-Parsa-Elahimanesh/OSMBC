@@ -6,20 +6,21 @@ import backend.game_play.Section;
 
 import java.awt.*;
 
-public class Manager { // TODO get a number as location! // TODO delete saber
-    public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2;
+public class Manager {
+    public static final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth() * 30 / 64;
     public static final int COLUMN = 24;
     public static final int SINGLE_BLOCK_WIDTH = SCREEN_WIDTH / COLUMN;
-    public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2;
+    public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() * 25 / 54;
     public static final int ROW = 16;
     public static final int SINGLE_BLOCK_HEIGHT = SCREEN_HEIGHT / ROW;
+    public static Point location;
     private static final Manager singleton = new Manager();
     public SuperMario superMario;
 
-    private Manager() {
-    }
+    private Manager() {}
 
-    public static void start() {
+    public static void start(int locationPart) {
+        location = new Point((locationPart&1)*(SCREEN_WIDTH+15), (locationPart/2)*(SCREEN_HEIGHT+15));
         singleton.superMario = new SuperMario();
     }
 

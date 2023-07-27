@@ -1,6 +1,7 @@
 package frontend.menu.shop;
 
 import backend.Manager;
+import frontend.GameFrame;
 import frontend.menu.MainMenu;
 import frontend.tile.TileButton;
 import frontend.tile.TileLabel;
@@ -8,7 +9,7 @@ import frontend.tile.TileLabel;
 import javax.swing.*;
 import java.awt.*;
 
-public class Shop extends JFrame {
+public class Shop extends GameFrame {
     static final int ROW = 2;
     static final int COLUMN = 3;
     private final transient Manager manager = Manager.getInstance();
@@ -16,9 +17,6 @@ public class Shop extends JFrame {
     public Shop() {
         super();
         JPanel panel = new JPanel(new GridLayout(ROW, COLUMN));
-        setUndecorated(true);
-
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         JPanel[][] gridPanel = new JPanel[ROW][COLUMN];
         for (int i = 0; i < ROW; i++)
             for (int j = 0; j < COLUMN; j++) {

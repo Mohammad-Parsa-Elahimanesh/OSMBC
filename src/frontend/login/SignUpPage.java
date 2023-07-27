@@ -2,21 +2,20 @@ package frontend.login;
 
 import backend.Manager;
 import backend.User;
+import frontend.GameFrame;
 import frontend.Massage;
 import frontend.tile.TileButton;
 import frontend.tile.TileTextField;
 
 import javax.swing.*;
 
-public class SignUpPage extends JFrame {
+public class SignUpPage extends GameFrame {
     TileTextField userName = userNameField();
     TileTextField password = passwordField();
 
     SignUpPage() {
         super();
         JPanel panel = new JPanel(null);
-        setUndecorated(true);
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         panel.add(userName);
         panel.add(password);
         panel.add(enterButton());

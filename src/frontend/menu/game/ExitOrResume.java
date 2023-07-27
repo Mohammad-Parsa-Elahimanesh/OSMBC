@@ -1,16 +1,17 @@
 package frontend.menu.game;
 
 import backend.Manager;
+import frontend.GameFrame;
 import frontend.menu.MainMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ExitOrResume extends JFrame {
+public class ExitOrResume extends GameFrame {
     ExitOrResume() {
         Manager.getInstance().currentMario().reset();
         setSize(200, 100);
-        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2, (Manager.SCREEN_HEIGHT - getHeight()) / 2);
+        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2+Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2+Manager.location.y);
         JPanel panel = new JPanel();
         add(panel);
         panel.setLayout(new GridLayout(3, 1));

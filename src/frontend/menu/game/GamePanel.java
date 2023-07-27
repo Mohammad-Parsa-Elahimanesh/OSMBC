@@ -29,11 +29,11 @@ public class GamePanel extends JPanel {
         g.setColor(Color.GREEN);
         g.drawString("Time : " + (int) (manager.currentSection().getWholeTime() - manager.currentSection().getSpentTime()), 0, scale);
         g.setColor(Color.RED);
-        g.drawString("Heart: " + manager.currentMario().heart, 6*scale, scale);
+        g.drawString("Heart: " + manager.currentMario().heart, 5*scale, scale);
         g.setColor(Color.BLUE);
-        g.drawString(Game.state(manager.currentGame()), 12*scale, scale);
+        g.drawString(Game.state(manager.currentGame()), 10*scale, scale);
         g.setColor(Color.DARK_GRAY);
-        g.drawString("Score: " + manager.currentGame().score, 20*scale, scale);
+        g.drawString("Score: " + manager.currentGame().score, 18*scale, scale);
         g.setColor(Color.YELLOW);
         g.drawString("Coins: " + manager.currentSection().getCoins(), 25*scale, scale);
 

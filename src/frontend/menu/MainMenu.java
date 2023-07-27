@@ -1,6 +1,7 @@
 package frontend.menu;
 
 import backend.Manager;
+import frontend.GameFrame;
 import frontend.login.EnterPage;
 import frontend.menu.game.PlayMenu;
 import frontend.menu.shop.Shop;
@@ -9,12 +10,10 @@ import frontend.tile.TileButton;
 import javax.swing.*;
 
 
-public class MainMenu extends JFrame {
+public class MainMenu extends GameFrame {
     public MainMenu() {
         super();
         JPanel panel = new JPanel(null);
-        setUndecorated(true);
-        setSize(Manager.SCREEN_WIDTH, Manager.SCREEN_HEIGHT);
         panel.add(play());
         panel.add(shop());
         panel.add(profile());
