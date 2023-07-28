@@ -3,7 +3,7 @@ package frontend.login;
 import backend.Manager;
 import backend.offline.User;
 import frontend.GameFrame;
-import frontend.Massage;
+import frontend.Notification;
 import frontend.Tools;
 
 import javax.swing.*;
@@ -41,7 +41,7 @@ public class SignUpPage extends GameFrame {
         enterButton.addActionListener(e -> {
             for (User user : Manager.superMario.users)
                 if (user.name.equals(userName.getText())) {
-                    new Massage("user already exists");
+                    new Notification("user exists", "<html>user with this username already exists. <br> usernames must be unique </html>");
                     return;
                 }
             User user = new User(userName.getText(), password.getText());

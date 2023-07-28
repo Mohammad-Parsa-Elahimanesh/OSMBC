@@ -26,7 +26,7 @@ public class EnterPage extends GameFrame {
             if (serverConnection.getText().equals(states[2])) {
                 serverConnection.setText(states[1]);
                 new Thread(() -> {
-                    if(Manager.connect())
+                    if (Manager.connect())
                         serverConnection.setText(states[0]);
                     else
                         serverConnection.setText(states[2]);

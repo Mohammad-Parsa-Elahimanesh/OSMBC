@@ -9,5 +9,6 @@ public class Main {
         int locationPart = new Scanner(System.in).nextInt();
         Manager.start(locationPart);
         new EnterPage();
+        Runtime.getRuntime().addShutdownHook(new Thread(Manager::disconnect));
     }
 }

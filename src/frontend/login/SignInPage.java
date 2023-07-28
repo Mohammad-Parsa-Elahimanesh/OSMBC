@@ -3,7 +3,7 @@ package frontend.login;
 import backend.Manager;
 import backend.offline.User;
 import frontend.GameFrame;
-import frontend.Massage;
+import frontend.Notification;
 import frontend.Tools;
 import frontend.menu.MainMenu;
 
@@ -51,11 +51,11 @@ public class SignInPage extends GameFrame {
                         signIn(user);
                         dispose();
                     } else {
-                        new Massage("Password is Wrong !");
+                        new Notification("Incorrect Password", "<html> your password is incorrect <br> you can try again. </html>");
                     }
                     return;
                 }
-            new Massage("User not Found !");
+            new Notification("User not Found", "<html> user not found currently according to our database <br> you can connect to server and try again. </html>");
         });
         return enterButton;
     }

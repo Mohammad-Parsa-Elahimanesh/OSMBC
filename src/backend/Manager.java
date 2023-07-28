@@ -9,15 +9,11 @@ import backend.offline.game_play.Section;
 
 import java.awt.*;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.ConnectException;
-import java.net.Socket;
-import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
 public class Manager {
-    public static final int serverPort = 50000;
+    public static final int SERVER_PORT = 50000;
     public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() * 30 / 64;
     public static final int COLUMN = 24;
     public static final int SINGLE_BLOCK_WIDTH = SCREEN_WIDTH / COLUMN;
@@ -26,7 +22,11 @@ public class Manager {
     public static final int SINGLE_BLOCK_HEIGHT = SCREEN_HEIGHT / ROW;
     public static Point location;
     public static SuperMario superMario;
+    public static final Font NOTIFICATION_TOPIC_FONT = new Font(Font.SANS_SERIF, Font.BOLD, SCREEN_HEIGHT/30);
+    public static final Font NOTIFICATION_TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, SCREEN_HEIGHT/40);
+
     static Connection connection;
+
     private Manager() {
     }
 
@@ -50,13 +50,14 @@ public class Manager {
     public static Mario currentMario() {
         return currentSection().mario;
     }
+
     public static boolean connect() {
-        if(connection != null) return true;
-        for(int i = 0; i < 5; i++) {
+        if (connection != null) return true;
+        for (int i = 0; i < 5; i++) {
             try {
-                Sleep(2000);
+                sleep(2000);
                 connection = new Connection();
-                // TODO update public datas
+                // TODO update public data
                 return true;
             } catch (IOException e) {
                 connection = null;
@@ -64,17 +65,20 @@ public class Manager {
         }
         return false;
     }
+
     public static void disconnect() {
-        if(connection != null) {
-            Sleep(2000);
+        if (connection != null) {
             // TODO send massage
             // TODO sync data
+            sleep(3000);
         }
         connection = null;
     }
 
-    static void Sleep(int milliseconds) {
-        try {sleep(milliseconds);} catch (InterruptedException ignored){/**/}
+    static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException ignored) {/**/}
     }
 
 }
