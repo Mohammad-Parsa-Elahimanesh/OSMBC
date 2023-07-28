@@ -11,7 +11,7 @@ public class ExitOrResume extends GameFrame {
     ExitOrResume() {
         Manager.currentMario().reset();
         setSize(200, 100);
-        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2+Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2+Manager.location.y);
+        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2 + Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2 + Manager.location.y);
         JPanel panel = new JPanel();
         add(panel);
         panel.setLayout(new GridLayout(3, 1));

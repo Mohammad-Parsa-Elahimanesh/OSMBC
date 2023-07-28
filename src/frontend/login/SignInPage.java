@@ -1,7 +1,7 @@
 package frontend.login;
 
 import backend.Manager;
-import backend.User;
+import backend.offline.User;
 import frontend.GameFrame;
 import frontend.Massage;
 import frontend.Tools;
@@ -30,19 +30,19 @@ public class SignInPage extends GameFrame {
     }
 
     JTextField userNameField() {
-        JTextField userNameField = Tools.tileTextField(10,5,4,1);
+        JTextField userNameField = Tools.tileTextField(10, 5, 4, 1);
         userNameField.setText("User Name");
         return userNameField;
     }
 
     JTextField passwordField() {
-        JTextField passwordField = Tools.tileTextField(10,7,4,1);
+        JTextField passwordField = Tools.tileTextField(10, 7, 4, 1);
         passwordField.setText("Password");
         return passwordField;
     }
 
     JButton enterButton() {
-        JButton enterButton = Tools.tileButton(10,9,4,1);
+        JButton enterButton = Tools.tileButton(10, 9, 4, 1);
         enterButton.setText("Enter");
         enterButton.addActionListener(e -> {
             for (User user : Manager.superMario.users)
@@ -61,7 +61,7 @@ public class SignInPage extends GameFrame {
     }
 
     JButton backButton() {
-        JButton backButton = Tools.tileButton(10,11,4,1);
+        JButton backButton = Tools.tileButton(10, 11, 4, 1);
         backButton.setText("Back");
         backButton.addActionListener(e -> {
             dispose();

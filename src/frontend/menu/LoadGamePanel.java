@@ -1,7 +1,7 @@
 package frontend.menu;
 
 import backend.Manager;
-import backend.game_play.Game;
+import backend.offline.game_play.Game;
 import frontend.Tools;
 import frontend.menu.game.PlayMenu;
 
@@ -17,14 +17,14 @@ public class LoadGamePanel extends JPanel {
         indexGame = indexGameInit;
         playMenu = playMenuInit;
         setLayout(new BorderLayout());
-        JButton loadGame = Tools.tileButton(0,0,8,12);
+        JButton loadGame = Tools.tileButton(0, 0, 8, 12);
         loadGame.setText(Game.state(Manager.currentUser().game[indexGame]));
         loadGame.addActionListener(e -> {
             playMenu.dispose();
             Manager.currentUser().runGame(indexGame);
         });
 
-        JButton clear = Tools.tileButton(0,12,8,4);
+        JButton clear = Tools.tileButton(0, 12, 8, 4);
         clear.setText("Clear");
         clear.addActionListener(e -> {
             Manager.currentUser().game[indexGame] = null;

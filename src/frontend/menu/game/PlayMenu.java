@@ -1,6 +1,5 @@
 package frontend.menu.game;
 
-import backend.Manager;
 import frontend.GameFrame;
 import frontend.menu.LoadGamePanel;
 

@@ -6,11 +6,12 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 
 public class AudioPlayer {
-    public static boolean silenceForever = false;
     static final Clip background = getClip("background");
+    public static boolean silenceForever = false;
     private static boolean silence = true;
 
-    private AudioPlayer() {}
+    private AudioPlayer() {
+    }
 
 
     public static void setSilence(boolean silence) {

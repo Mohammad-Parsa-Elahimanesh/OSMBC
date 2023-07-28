@@ -1,7 +1,7 @@
 package frontend.menu;
 
 import backend.Manager;
-import backend.User;
+import backend.offline.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class LeaderBoard extends JFrame {
     LeaderBoard() {
         setSize(800, 350);
-        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2+Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2+Manager.location.y);
+        setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2 + Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2 + Manager.location.y);
         ArrayList<User> topUsers = new ArrayList<>();
         for (User user : Manager.superMario.users)
             if (user.maxRating != -1)

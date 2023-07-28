@@ -22,7 +22,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton play() {
-        JButton play = Tools.tileButton(10,1,4,2);
+        JButton play = Tools.tileButton(10, 1, 4, 2);
         play.setText("Play");
         play.addActionListener(e -> {
             new PlayMenu();
@@ -32,7 +32,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton shop() {
-        JButton shop = Tools.tileButton(10,4,4,2);
+        JButton shop = Tools.tileButton(10, 4, 4, 2);
         shop.setText("Shop");
         shop.addActionListener(e -> {
             //new Shop();
@@ -42,21 +42,21 @@ public class MainMenu extends GameFrame {
     }
 
     JButton profile() {
-        JButton profile = Tools.tileButton(10,7,4,2);
+        JButton profile = Tools.tileButton(10, 7, 4, 2);
         profile.setText("Profile");
         profile.addActionListener(e -> new Profile());
         return profile;
     }
 
     JButton leaderBoard() {
-        JButton leaderBoard = Tools.tileButton(10,10,4,2);
+        JButton leaderBoard = Tools.tileButton(10, 10, 4, 2);
         leaderBoard.setText("Leaderboard");
         leaderBoard.addActionListener(e -> new LeaderBoard());
         return leaderBoard;
     }
 
     JButton back() {
-        JButton back = Tools.tileButton(10,13,4,2);
+        JButton back = Tools.tileButton(10, 13, 4, 2);
         back.setText("Back");
         back.addActionListener(e -> {
             new EnterPage();
