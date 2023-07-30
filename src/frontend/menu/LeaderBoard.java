@@ -12,7 +12,7 @@ public class LeaderBoard extends JFrame {
         setSize(800, 350);
         setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2 + Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2 + Manager.location.y);
         ArrayList<User> topUsers = new ArrayList<>();
-        for (User user : Manager.superMario.users)
+        for (User user : User.getUsers())
             if (user.maxRating != -1)
                 topUsers.add(user);
         for (int i = 0; i < topUsers.size(); i++)

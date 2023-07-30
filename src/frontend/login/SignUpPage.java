@@ -1,10 +1,12 @@
 package frontend.login;
 
-import backend.Manager;
+import backend.network.request.Request;
+import backend.network.request.SignUpStatus;
 import backend.offline.User;
 import frontend.GameFrame;
-import frontend.Notification;
+import frontend.notification.Notification;
 import frontend.Tools;
+import frontend.notification.NotificationType;
 
 import javax.swing.*;
 
@@ -25,7 +27,7 @@ public class SignUpPage extends GameFrame {
 
     JTextField userNameField() {
         JTextField userNameField = Tools.tileTextField(10, 5, 4, 1);
-        userNameField.setText("User Name");
+        userNameField.setText("UserName");
         return userNameField;
     }
 
@@ -37,17 +39,18 @@ public class SignUpPage extends GameFrame {
 
     JButton enterButton() {
         JButton enterButton = Tools.tileButton(10, 9, 4, 1);
-        enterButton.setText("Enter");
+        enterButton.setText("Register");
         enterButton.addActionListener(e -> {
-            for (User user : Manager.superMario.users)
-                if (user.name.equals(userName.getText())) {
-                    new Notification("user exists", "<html>user with this username already exists. <br> usernames must be unique </html>");
-                    return;
+            SignUpStatus status = Request.signUp(userName.getText(), password.getText());
+            switch (status) {
+                case SUCCESS -> {
+                    User user = new User(userName.getText(), password.getText());
+                    SignInPage.signIn(user);
+                    dispose();
                 }
-            User user = new User(userName.getText(), password.getText());
-            Manager.superMario.users.add(user);
-            SignInPage.signIn(user);
-            dispose();
+                case NON_UNIQUE_USERNAME -> Notification.notice(NotificationType.USER_EXIST);
+                case SPACE_IN_TEXT -> Notification.notice(NotificationType.SPACE_IN_TEXT);
+            }
         });
         return enterButton;
     }

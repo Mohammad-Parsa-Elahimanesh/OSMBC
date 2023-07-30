@@ -1,11 +1,14 @@
 package frontend.login;
 
 import backend.Manager;
+import backend.network.request.Request;
+import backend.network.request.SignInStatus;
 import backend.offline.User;
 import frontend.GameFrame;
-import frontend.Notification;
+import frontend.notification.Notification;
 import frontend.Tools;
 import frontend.menu.MainMenu;
+import frontend.notification.NotificationType;
 
 import javax.swing.*;
 
@@ -25,13 +28,13 @@ public class SignInPage extends GameFrame {
     }
 
     static void signIn(User user) {
-        Manager.superMario.currentUser = user;
+        User.logedInUser = user;
         new MainMenu();
     }
 
     JTextField userNameField() {
         JTextField userNameField = Tools.tileTextField(10, 5, 4, 1);
-        userNameField.setText("User Name");
+        userNameField.setText("UserName");
         return userNameField;
     }
 
@@ -43,19 +46,25 @@ public class SignInPage extends GameFrame {
 
     JButton enterButton() {
         JButton enterButton = Tools.tileButton(10, 9, 4, 1);
-        enterButton.setText("Enter");
+        enterButton.setText("Sign In");
         enterButton.addActionListener(e -> {
-            for (User user : Manager.superMario.users)
+            if(Manager.isConnected())
+                Request.users();
+            for (User user : User.getUsers())
                 if (user.name.equals(userName.getText())) {
                     if (user.password == password.getText().hashCode()) {
-                        signIn(user);
-                        dispose();
-                    } else {
-                        new Notification("Incorrect Password", "<html> your password is incorrect <br> you can try again. </html>");
-                    }
+                        SignInStatus status = (Manager.isConnected()?Request.signIn(userName.getText(), password.getText()):SignInStatus.SUCCESS);
+                        switch (status) {
+                            case SUCCESS ->  {signIn(user); dispose();}
+                            case USER_NOT_EXIST -> Notification.notice(NotificationType.USER_NOT_EXIST);
+                            case SPACE_IN_TEXT -> Notification.notice(NotificationType.SPACE_IN_TEXT);
+                            case PASSWORD_INCORRECT -> Notification.notice(NotificationType.INCORRECT_PASSWORD);
+                        }
+                    } else Notification.notice(NotificationType.INCORRECT_PASSWORD);
                     return;
                 }
-            new Notification("User not Found", "<html> user not found currently according to our database <br> you can connect to server and try again. </html>");
+            if(Manager.isConnected()) Notification.notice(NotificationType.USER_NOT_EXIST);
+            else Notification.notice(NotificationType.USER_NOT_FOUND);
         });
         return enterButton;
     }

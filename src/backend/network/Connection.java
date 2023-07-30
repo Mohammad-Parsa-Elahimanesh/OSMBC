@@ -17,4 +17,9 @@ public class Connection {
         printer = new PrintStream(socket.getOutputStream());
         scanner = new Scanner(socket.getInputStream());
     }
+
+    public void send(Object message) {
+        printer.println(message);
+        printer.flush();
+    }
 }

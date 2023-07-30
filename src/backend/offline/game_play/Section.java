@@ -27,7 +27,8 @@ public class Section {
     final String name;
     private final List<Block> mustBeAdded = new ArrayList<>();
     private final List<Block> mustBeRemoved = new ArrayList<>();
-    private int length;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
+    private int length;
+    private int wholeTime;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
         Manager.currentGame().gameFrame.repaint();
         Manager.currentSection().update();
     }) {
@@ -43,7 +44,6 @@ public class Section {
             AudioPlayer.setSilence(true);
         }
     };
-    private int wholeTime;
     private Section nextSection;
     private double spentTime = 0;
     private int coins = 0;
