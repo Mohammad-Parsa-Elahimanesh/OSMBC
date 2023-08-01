@@ -1,18 +1,28 @@
 package frontend.menu;
 
 import backend.Manager;
+import backend.offline.game_play.Record;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Profile extends JFrame {
     Profile() {
-        setSize(640, 360);
+        setSize(400, 300);
         setLocation((Manager.SCREEN_WIDTH - getWidth()) / 2 + Manager.location.x, (Manager.SCREEN_HEIGHT - getHeight()) / 2 + Manager.location.y);
-        JPanel panel = new JPanel(new GridLayout(3, 1));
-        panel.add(new JLabel("name : " + Manager.currentUser().name));
-        panel.add(new JLabel("max rating : " + Math.max(Manager.currentUser().maxRating, 0)));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel top = new JLabel("name: "+Manager.currentUser().name+", coins(offline): "+Manager.currentUser().offlineCoins);
+        top.setSize(400,80);
+        top.setFont(Manager.PROFILE_TOPIC_FONT);
+        panel.add(top);
+        for(Record gameRecord : Manager.currentUser().records) {
+            JLabel label = new JLabel("score: "+ gameRecord.score+", time: "+((int) gameRecord.wholeTime)+", killed enemies: "+ gameRecord.killedEnemies);
+            label.setSize(400, 60);
+            label.setFont(Manager.PROFILE_RECORD_FONT);
+            panel.add(label);
+        }
         add(panel);
         setVisible(true);
     }
 }
+

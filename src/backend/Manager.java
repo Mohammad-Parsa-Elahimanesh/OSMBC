@@ -20,6 +20,8 @@ public class Manager {
     public static final int SINGLE_BLOCK_HEIGHT = SCREEN_HEIGHT / ROW;
     public static final Font NOTIFICATION_TOPIC_FONT = new Font(Font.SANS_SERIF, Font.BOLD, SCREEN_HEIGHT / 30);
     public static final Font NOTIFICATION_TEXT_FONT = new Font(Font.SANS_SERIF, Font.PLAIN, SCREEN_HEIGHT / 40);
+    public static final Font PROFILE_TOPIC_FONT = new Font("Arial", Font.BOLD, 30);
+    public static final Font PROFILE_RECORD_FONT = new Font("Arial", Font.PLAIN, 20);
     public static Point location;
     public static Connection connection;
 

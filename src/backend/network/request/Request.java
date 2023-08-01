@@ -12,7 +12,6 @@ public class Request {
         {
             String name = Manager.connection.scanner.next();
             int passwordHash = Manager.connection.scanner.nextInt();
-            System.out.println(name + " " + passwordHash);
             users[i] = new User(name, passwordHash);
         }
     }
@@ -26,9 +25,13 @@ public class Request {
     }
     public static void signOut() {
         if(Manager.isConnected() && User.logedInUser != null) {
-            // TODO send data loged IN user
+            // send coins, records
             Manager.connection.send(RequestType.SIGN_OUT);
         }
+    }
+    public static void updateUser() {
+        Manager.connection.send(RequestType.UPDATE_USER);
+        // get coins, records
     }
     public static void close() {
         if (Manager.isConnected()) {

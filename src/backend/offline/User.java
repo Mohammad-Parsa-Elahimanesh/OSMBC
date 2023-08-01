@@ -1,6 +1,7 @@
 package backend.offline;
 
 import backend.offline.game_play.Game;
+import backend.offline.game_play.Record;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +9,12 @@ import java.util.Objects;
 
 public class User {
     private static final List<User> users = new ArrayList<>();
+    public final List<Record> records = new ArrayList<>();
     public static User logedInUser;
     public final Game[] game = new Game[3];
     public final String name;
     public final int password;
-    public int coins = 0;
+    public int offlineCoins = 0;
     public int maxRating = -1;
     public int currentGameIndex = -1;
     public User(String name, int passwordHash) {

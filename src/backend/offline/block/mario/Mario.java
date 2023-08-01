@@ -101,9 +101,9 @@ public class Mario extends Block {
     }
 
     private void saberShot() {
-        if (saberShotCooldown == 0 && Manager.currentUser().coins >= 3) {
+        if (saberShotCooldown == 0 && Manager.currentUser().offlineCoins >= 3) {
             Manager.currentSection().add(new Saber(this));
-            Manager.currentUser().coins -= 3;
+            Manager.currentUser().offlineCoins -= 3;
             saberShotCooldown = 5;
         }
     }

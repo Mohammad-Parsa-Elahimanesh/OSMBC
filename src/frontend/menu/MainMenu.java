@@ -51,7 +51,7 @@ public class MainMenu extends GameFrame {
     JButton leaderBoard() {
         JButton leaderBoard = Tools.tileButton(10, 10, 4, 2);
         leaderBoard.setText("Leaderboard");
-        leaderBoard.addActionListener(e -> new LeaderBoard());
+        //leaderBoard.addActionListener(e -> new LeaderBoard());
         return leaderBoard;
     }
 

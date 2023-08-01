@@ -252,10 +252,11 @@ public class Section {
     void sectionReward() {
         Manager.currentGame().score += (wholeTime - spentTime) * mario.getPowerLevel();
         Manager.currentGame().score += mario.heart * 20 * mario.getPowerLevel();
-        Manager.currentUser().coins += coins;
+        Manager.currentUser().offlineCoins += coins;
     }
 
     void marioDie() {
+        Manager.currentGame().record.wholeTime += spentTime;
         mario.shield = 0;
         if (mario.Y < 0)
             mario.state = MarioState.mini;
@@ -307,6 +308,7 @@ public class Section {
     }
 
     void nextSection() {
+        Manager.currentGame().record.wholeTime += spentTime;
         timer.stop();
         Manager.currentSection().sectionReward();
         if (nextSection == null) {

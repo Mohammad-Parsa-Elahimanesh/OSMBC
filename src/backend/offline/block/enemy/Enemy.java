@@ -17,10 +17,10 @@ public abstract class Enemy extends Block {
     abstract int scoreWhenBeKilled();
 
     public void Die() {
-
         AudioPlayer.playSound("enemyDeath");
         Manager.currentSection().getCoin(3);
         Manager.currentGame().score += scoreWhenBeKilled();
+        Manager.currentGame().record.killedEnemies++;
         remove();
     }
 }
