@@ -3,17 +3,17 @@ package backend.offline.game_play;
 import backend.Manager;
 import backend.offline.block.mario.Mario;
 import frontend.menu.MainMenu;
-import frontend.menu.game.GameFrame;
+import frontend.menu.offline_game.OfflineGameFrame;
 
 
 public class Game {
     public int score = 0;
-    public GameFrame gameFrame = new GameFrame();
+    public OfflineGameFrame offlineGameFrame = new OfflineGameFrame();
     public Section currentSection;
     public Record record = new Record();
     public Game() {
         currentSection = Section.makeSections(new Mario());
-        gameFrame.setVisible(true);
+        offlineGameFrame.setVisible(true);
         currentSection.timer.start();
     }
 
@@ -26,7 +26,7 @@ public class Game {
 
     void endGame() {
         Manager.currentUser().game[Manager.currentUser().currentGameIndex] = null;
-        gameFrame.dispose();
+        offlineGameFrame.dispose();
         new MainMenu();
     }
 

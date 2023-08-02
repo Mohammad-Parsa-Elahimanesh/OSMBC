@@ -1,4 +1,4 @@
-package frontend.menu.game;
+package frontend.menu.offline_game;
 
 import backend.Manager;
 import backend.offline.block.Checkpoint;

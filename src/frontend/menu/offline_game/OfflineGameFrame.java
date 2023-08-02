@@ -1,4 +1,4 @@
-package frontend.menu.game;
+package frontend.menu.offline_game;
 
 import backend.Manager;
 import backend.offline.block.Block;
@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameFrame extends frontend.GameFrame {
-    public GameFrame() {
+public class OfflineGameFrame extends frontend.GameFrame {
+    public OfflineGameFrame() {
         super();
         setContentPane(new GamePanel());
         setBackground(Color.cyan);

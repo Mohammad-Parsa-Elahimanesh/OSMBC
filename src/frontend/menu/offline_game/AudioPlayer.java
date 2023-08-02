@@ -1,4 +1,4 @@
-package frontend.menu.game;
+package frontend.menu.offline_game;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

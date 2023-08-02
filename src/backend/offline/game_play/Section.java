@@ -12,7 +12,7 @@ import backend.offline.block.enemy.Spiny;
 import backend.offline.block.flag.Flag;
 import backend.offline.block.mario.Mario;
 import backend.offline.block.mario.MarioState;
-import frontend.menu.game.AudioPlayer;
+import frontend.menu.offline_game.AudioPlayer;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Section {
     private final List<Block> mustBeRemoved = new ArrayList<>();
     private int length;
     private int wholeTime;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
-        Manager.currentGame().gameFrame.repaint();
+        Manager.currentGame().offlineGameFrame.repaint();
         Manager.currentSection().update();
     }) {
         @Override

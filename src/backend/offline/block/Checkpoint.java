@@ -3,7 +3,7 @@ package backend.offline.block;
 
 import backend.Manager;
 import backend.offline.game_play.Section;
-import frontend.menu.game.CheckpointMenu;
+import frontend.menu.offline_game.CheckpointMenu;
 
 public class Checkpoint extends Block {
     public double spendTime;

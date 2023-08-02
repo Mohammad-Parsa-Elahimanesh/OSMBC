@@ -2,7 +2,7 @@ package backend.offline.block.enemy;
 
 import backend.Manager;
 import backend.offline.block.Block;
-import frontend.menu.game.AudioPlayer;
+import frontend.menu.offline_game.AudioPlayer;
 
 public abstract class Enemy extends Block {
     Enemy(double w, double h, double x, double y) {

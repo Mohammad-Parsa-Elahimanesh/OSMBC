@@ -3,7 +3,7 @@ package backend.offline.block.flag;
 import backend.Manager;
 import backend.offline.block.Block;
 import backend.offline.game_play.Section;
-import frontend.menu.game.AudioPlayer;
+import frontend.menu.offline_game.AudioPlayer;
 
 public class Flag extends Block {
     final FlagPicture flagPicture;

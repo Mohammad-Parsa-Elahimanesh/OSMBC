@@ -3,24 +3,24 @@ package frontend.menu;
 import backend.Manager;
 import backend.offline.game_play.Game;
 import frontend.Tools;
-import frontend.menu.game.PlayMenu;
+import frontend.menu.offline_game.OfflineSoloPlayMenu;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LoadGamePanel extends JPanel {
     final int indexGame;
-    final PlayMenu playMenu;
+    final OfflineSoloPlayMenu offlineSoloPlayMenu;
 
-    public LoadGamePanel(int indexGameInit, PlayMenu playMenuInit) {
+    public LoadGamePanel(int indexGameInit, OfflineSoloPlayMenu offlineSoloPlayMenuInit) {
         super();
         indexGame = indexGameInit;
-        playMenu = playMenuInit;
+        offlineSoloPlayMenu = offlineSoloPlayMenuInit;
         setLayout(new BorderLayout());
         JButton loadGame = Tools.tileButton(0, 0, 8, 12);
         loadGame.setText(Game.state(Manager.currentUser().game[indexGame]));
         loadGame.addActionListener(e -> {
-            playMenu.dispose();
+            offlineSoloPlayMenu.dispose();
             Manager.currentUser().runGame(indexGame);
         });
 

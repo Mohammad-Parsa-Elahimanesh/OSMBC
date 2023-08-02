@@ -6,7 +6,7 @@ import backend.offline.block.brick.Spring;
 import backend.offline.block.enemy.Enemy;
 import backend.offline.block.item.*;
 import backend.offline.game_play.Section;
-import frontend.menu.game.AudioPlayer;
+import frontend.menu.offline_game.AudioPlayer;
 
 import java.awt.*;
 import java.util.EnumMap;
