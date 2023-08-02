@@ -1,5 +1,6 @@
 package frontend.menu;
 
+import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.Tools;
 import frontend.login.EnterPage;
@@ -18,6 +19,7 @@ public class MainMenu extends GameFrame {
         panel.add(leaderBoard());
         panel.add(back());
         add(panel);
+        Request.updateOurUser();
         setVisible(true);
     }
 

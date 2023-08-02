@@ -256,12 +256,12 @@ public class Section {
     }
 
     void marioDie() {
-        Manager.currentGame().record.wholeTime += spentTime;
         mario.shield = 0;
         if (mario.Y < 0)
             mario.state = MarioState.mini;
         switch (mario.state) {
             case mini -> {
+                Manager.currentGame().record.wholeTime += spentTime;
                 AudioPlayer.playSound("marioDeath");
                 spentTime = 0;
                 coins -= ((savedCheckpoints.size() + 1) * coins + progressRisk()) / (savedCheckpoints.size() + 4);
@@ -313,6 +313,8 @@ public class Section {
         Manager.currentSection().sectionReward();
         if (nextSection == null) {
             timer.stop();
+            Manager.currentGame().record.score = Manager.currentGame().score;
+            Manager.currentUser().records.add(Manager.currentGame().record);
             Manager.currentGame().endGame();
             return;
         }

@@ -33,6 +33,8 @@ public class GameFrame extends frontend.GameFrame {
                     case KeyEvent.VK_RIGHT -> Manager.currentMario().task.put(Block.Direction.RIGHT, true);
                     case KeyEvent.VK_DOWN -> Manager.currentMario().task.put(Block.Direction.DOWN, true);
                 }
+                if(e.getExtendedKeyCode() == KeyEvent.VK_ADD)
+                    Manager.currentMario().hack();
             }
 
             public void keyReleased(KeyEvent e) {

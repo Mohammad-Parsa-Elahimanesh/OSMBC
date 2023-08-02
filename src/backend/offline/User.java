@@ -15,7 +15,6 @@ public class User {
     public final String name;
     public final int password;
     public int offlineCoins = 0;
-    public int maxRating = -1;
     public int currentGameIndex = -1;
     public User(String name, int passwordHash) {
         this.name = name;

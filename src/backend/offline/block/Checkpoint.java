@@ -29,6 +29,7 @@ public class Checkpoint extends Block {
     }
 
     public void resume() {
+        Manager.currentMario().reset();
         Manager.currentSection().timer.start();
     }
 

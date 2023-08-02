@@ -25,8 +25,6 @@ public class Game {
     }
 
     void endGame() {
-        Manager.currentGame().record.score = score;
-        Manager.currentUser().records.add(Manager.currentGame().record);
         Manager.currentUser().game[Manager.currentUser().currentGameIndex] = null;
         gameFrame.dispose();
         new MainMenu();

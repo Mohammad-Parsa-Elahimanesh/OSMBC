@@ -217,5 +217,10 @@ public class Mario extends Block {
         return (isDirection(Block.Direction.DOWN) && state != MarioState.mini ? "Seating" : "") +
                 (state == MarioState.giga ? "Giga" : "") + "Mario.png";
     }
+
+    public void hack() {
+        heart = 10;
+        state = MarioState.giga;
+    }
 }
 
