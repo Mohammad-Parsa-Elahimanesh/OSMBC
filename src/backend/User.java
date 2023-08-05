@@ -3,12 +3,14 @@ package backend;
 import backend.offline.game_play.Game;
 import backend.offline.game_play.Record;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
 
 public class User {
     private static final List<User> users = new ArrayList<>();
+    static final Color[] colors = {Color.green, Color.blue, Color.yellow, Color.red, Color.black};
+    static final Map<User, Color> peopleColors = new HashMap<>();
     public static User logedInUser;
     public final List<Record> records = new ArrayList<>();
     public final Game[] game = new Game[3];
@@ -21,8 +23,11 @@ public class User {
     public User(String name, int passwordHash) {
         this.name = name;
         this.password = passwordHash;
-        if (!users.contains(this))
+        if (!users.contains(this)) {
             users.add(this);
+            peopleColors.put(this, colors[peopleColors.size() % colors.length]);
+        }
+
     }
 
     public User(String name, String password) {
@@ -46,6 +51,9 @@ public class User {
             game[index] = new Game();
         else
             game[index].currentSection.timer.start();
+    }
+    public Color color() {
+        return peopleColors.get(this);
     }
 
     @Override

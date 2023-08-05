@@ -11,7 +11,7 @@ import javax.swing.*;
 public class GameModeSelection extends GameFrame {
     final PlayerMode playerMode;
 
-    GameModeSelection(PlayerMode playerMode) {
+    public GameModeSelection(PlayerMode playerMode) {
         super();
         this.playerMode = playerMode;
         JPanel panel = new JPanel(null);
@@ -73,7 +73,7 @@ public class GameModeSelection extends GameFrame {
         }
     }
 
-    enum PlayerMode {
+    public enum PlayerMode {
         FRIENDLY,
         COMPETITION
     }

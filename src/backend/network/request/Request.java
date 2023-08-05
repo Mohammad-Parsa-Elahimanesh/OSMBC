@@ -21,7 +21,8 @@ public class Request {
         int count = Manager.connection.nextInt();
         for (int i = 0; i < count; i++)
             new User(Manager.connection.next(), Manager.connection.nextInt());
-        friends();
+        if(User.logedInUser != null)
+            friends();
     }
 
     public static SignUpStatus signUp(String username, String password) {
@@ -61,11 +62,11 @@ public class Request {
     }
 
 
-    public static Map<User, boolean> rooms(GameMode mode) {
+    public static Map<User, Boolean> rooms(GameMode mode) {
         users();
         Manager.connection.send(RequestType.ROOMS + " " + mode);
         int count = Manager.connection.nextInt();
-        Map<User, boolean> rooms = new HashMap();
+        Map<User, Boolean> rooms = new HashMap();
         for (int i = 0; i < count; i++)
             rooms.put(User.find(Manager.connection.next()), Manager.connection.next().equals("Y"));
         return rooms;
