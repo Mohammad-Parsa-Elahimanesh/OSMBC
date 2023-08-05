@@ -1,7 +1,8 @@
 package backend.online.room;
 
 public enum RoomState {
-    WAIT,
-    READY,
-    GO,
+    OPEN,
+    CLOSE,
+    PLAYING,
+    FINISHED
 }

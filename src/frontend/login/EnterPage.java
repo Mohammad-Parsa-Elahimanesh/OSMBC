@@ -3,8 +3,8 @@ package frontend.login;
 import backend.Manager;
 import backend.network.request.Request;
 import frontend.GameFrame;
-import frontend.notification.Notification;
 import frontend.Tools;
+import frontend.notification.Notification;
 import frontend.notification.NotificationType;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ public class EnterPage extends GameFrame {
         panel.add(signUpButton());
         panel.add(exitButton());
         add(panel);
-        if(Manager.isConnected())
+        if (Manager.isConnected())
             Request.signOut();
         setVisible(true);
     }
@@ -26,7 +26,7 @@ public class EnterPage extends GameFrame {
     JButton serverConnection() {
         final String[] states = {"Connected", "Connecting ...", "Disconnected", "Disconnecting ..."};
         JButton serverConnection = Tools.tileButton(10, 2, 4, 2);
-        serverConnection.setText(Manager.isConnected()?states[0]:states[2]);
+        serverConnection.setText(Manager.isConnected() ? states[0] : states[2]);
         serverConnection.addActionListener(e -> {
             if (serverConnection.getText().equals(states[2])) {
                 serverConnection.setText(states[1]);

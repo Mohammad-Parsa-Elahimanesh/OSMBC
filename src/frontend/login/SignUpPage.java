@@ -1,11 +1,11 @@
 package frontend.login;
 
+import backend.User;
 import backend.network.request.Request;
 import backend.network.request.SignUpStatus;
-import backend.User;
 import frontend.GameFrame;
-import frontend.notification.Notification;
 import frontend.Tools;
+import frontend.notification.Notification;
 import frontend.notification.NotificationType;
 
 import javax.swing.*;

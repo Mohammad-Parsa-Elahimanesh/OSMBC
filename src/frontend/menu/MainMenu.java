@@ -33,6 +33,7 @@ public class MainMenu extends GameFrame {
         });
         return play;
     }
+
     JButton profile() {
         JButton profile = Tools.tileButton(13, 1, 4, 2);
         profile.setText("Profile");
@@ -48,6 +49,7 @@ public class MainMenu extends GameFrame {
         });
         return chat;
     }
+
     JButton standing() {
         JButton standing = Tools.tileButton(13, 5, 4, 2);
         standing.setText("Standing");
@@ -74,7 +76,6 @@ public class MainMenu extends GameFrame {
         });
         return bags;
     }
-
 
 
     JButton back() {

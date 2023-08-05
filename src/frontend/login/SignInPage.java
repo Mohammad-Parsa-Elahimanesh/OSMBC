@@ -1,13 +1,13 @@
 package frontend.login;
 
 import backend.Manager;
+import backend.User;
 import backend.network.request.Request;
 import backend.network.request.SignInStatus;
-import backend.User;
 import frontend.GameFrame;
-import frontend.notification.Notification;
 import frontend.Tools;
 import frontend.menu.MainMenu;
+import frontend.notification.Notification;
 import frontend.notification.NotificationType;
 
 import javax.swing.*;
@@ -48,14 +48,17 @@ public class SignInPage extends GameFrame {
         JButton enterButton = Tools.tileButton(10, 9, 4, 1);
         enterButton.setText("Sign In");
         enterButton.addActionListener(e -> {
-            if(Manager.isConnected())
+            if (Manager.isConnected())
                 Request.users();
             for (User user : User.getUsers())
                 if (user.name.equals(userName.getText())) {
                     if (user.password == password.getText().hashCode()) {
-                        SignInStatus status = (Manager.isConnected()?Request.signIn(userName.getText(), password.getText()):SignInStatus.SUCCESS);
+                        SignInStatus status = (Manager.isConnected() ? Request.signIn(userName.getText(), password.getText()) : SignInStatus.SUCCESS);
                         switch (status) {
-                            case SUCCESS ->  {signIn(user); dispose();}
+                            case SUCCESS -> {
+                                signIn(user);
+                                dispose();
+                            }
                             case USER_NOT_EXIST -> Notification.notice(NotificationType.USER_NOT_EXIST);
                             case SPACE_IN_TEXT -> Notification.notice(NotificationType.SPACE_IN_TEXT);
                             case PASSWORD_INCORRECT -> Notification.notice(NotificationType.INCORRECT_PASSWORD);
@@ -63,7 +66,7 @@ public class SignInPage extends GameFrame {
                     } else Notification.notice(NotificationType.INCORRECT_PASSWORD);
                     return;
                 }
-            if(Manager.isConnected()) Notification.notice(NotificationType.USER_NOT_EXIST);
+            if (Manager.isConnected()) Notification.notice(NotificationType.USER_NOT_EXIST);
             else Notification.notice(NotificationType.USER_NOT_FOUND);
         });
         return enterButton;

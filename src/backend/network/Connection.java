@@ -21,9 +21,11 @@ public class Connection {
         printer.println(message);
         printer.flush();
     }
+
     public String next() {
         return scanner.next();
     }
+
     public int nextInt() {
         return scanner.nextInt();
     }

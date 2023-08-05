@@ -44,6 +44,27 @@ public class Notification extends JFrame {
         this(topic, text, null);
     }
 
+    public static void notice(NotificationType type) {
+        switch (type) {
+            case ONLINE_ACCESS ->
+                    new Notification("Online Access", "You are offline now, You need to connect server to get access to this part!");
+            case SPACE_IN_TEXT ->
+                    new Notification("Space in Text", "username and password can not have spaces in their fields");
+            case USER_EXIST ->
+                    new Notification("user exists", "<html>user with this username already exists. <br> usernames must be unique </html>");
+            case USER_NOT_FOUND ->
+                    new Notification("User not Found", "<html> user not found currently according to our database <br> you can connect to server and try again. </html>");
+            case USER_NOT_EXIST ->
+                    new Notification("User Doesn't Exist", "User with this username does not exist yet, ypu must sign up first.");
+            case INCORRECT_PASSWORD ->
+                    new Notification("Incorrect Password", "<html> your entered password is incorrect <br> you can try again. </html>");
+            case INVALID_ROOM ->
+                    new Notification("Invalid Room", "there is no room with your entered data, reinstall the app or call support.");
+            case INACTIVE_ROOM ->
+                    new Notification("Inactive Room", "Room is not open right not, maybe it is finished or closed by admins.");
+        }
+    }
+
     JPanel notificationJPanel(String topic, String text) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -69,16 +90,5 @@ public class Notification extends JFrame {
     private String htmlFormatStringMaker(String text) {
         if (text.contains("<html>") || text.length() <= MAX_CHARS_INLINE_TEXT) return text;
         return "<html>" + text.substring(0, MAX_CHARS_INLINE_TEXT) + "<br>" + text.substring(MAX_CHARS_INLINE_TEXT) + "</html>";
-    }
-
-    public static void notice(NotificationType type) {
-        switch (type) {
-            case ONLINE_ACCESS -> new Notification("Online Access", "You are offline now, You need to connect server to get access to this part!");
-            case SPACE_IN_TEXT -> new Notification("Space in Text", "username and password can not have spaces in their fields");
-            case USER_EXIST -> new Notification("user exists", "<html>user with this username already exists. <br> usernames must be unique </html>");
-            case USER_NOT_FOUND -> new Notification("User not Found", "<html> user not found currently according to our database <br> you can connect to server and try again. </html>");
-            case USER_NOT_EXIST -> new Notification("User Doesn't Exist", "User with this username does not exist yet, ypu must sign up first.");
-            case INCORRECT_PASSWORD -> new Notification("Incorrect Password", "<html> your password is incorrect <br> you can try again. </html>");
-        }
     }
 }

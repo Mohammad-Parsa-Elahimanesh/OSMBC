@@ -11,6 +11,7 @@ public class Game {
     public OfflineGameFrame offlineGameFrame = new OfflineGameFrame();
     public Section currentSection;
     public Record record = new Record();
+
     public Game() {
         currentSection = Section.makeSections(new Mario());
         offlineGameFrame.setVisible(true);

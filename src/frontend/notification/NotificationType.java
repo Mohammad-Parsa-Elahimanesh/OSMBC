@@ -6,5 +6,7 @@ public enum NotificationType {
     SPACE_IN_TEXT,
     USER_NOT_FOUND,
     USER_NOT_EXIST,
-    INCORRECT_PASSWORD
+    INCORRECT_PASSWORD,
+    INVALID_ROOM,
+    INACTIVE_ROOM,
 }

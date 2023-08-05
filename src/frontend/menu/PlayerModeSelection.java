@@ -37,7 +37,7 @@ public class PlayerModeSelection extends GameFrame {
         JButton competition = Tools.tileButton(10, 5, 4, 2);
         competition.setText("Competition");
         competition.addActionListener(e -> {
-            if(!Manager.isConnected()) {
+            if (!Manager.isConnected()) {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
                 return;
             }
@@ -51,7 +51,7 @@ public class PlayerModeSelection extends GameFrame {
         JButton friendly = Tools.tileButton(10, 9, 4, 2);
         friendly.setText("Friendly");
         friendly.addActionListener(e -> {
-            if(!Manager.isConnected()) {
+            if (!Manager.isConnected()) {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
                 return;
             }

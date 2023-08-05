@@ -1,17 +1,16 @@
 package frontend.menu;
 
+import backend.GameMode;
 import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.Tools;
+import frontend.menu.room.RoomSelection;
 
 import javax.swing.*;
 
 public class GameModeSelection extends GameFrame {
-    enum PlayerMode {
-        FRIENDLY,
-        COMPETITION
-    }
     final PlayerMode playerMode;
+
     GameModeSelection(PlayerMode playerMode) {
         super();
         this.playerMode = playerMode;
@@ -24,12 +23,13 @@ public class GameModeSelection extends GameFrame {
         Request.updateOurUser();
         setVisible(true);
     }
+
     JButton adventure() {
         JButton adventure = Tools.tileButton(10, 1, 4, 2);
         adventure.setText("Adventure");
         adventure.addActionListener(e -> {
-            // TODO
             dispose();
+            nextStep(GameMode.ADVENTURE);
         });
         return adventure;
     }
@@ -38,8 +38,8 @@ public class GameModeSelection extends GameFrame {
         JButton marathon = Tools.tileButton(10, 5, 4, 2);
         marathon.setText("Marathon");
         marathon.addActionListener(e -> {
-            // TODO
             dispose();
+            nextStep(GameMode.MARATHON);
         });
         return marathon;
     }
@@ -48,11 +48,12 @@ public class GameModeSelection extends GameFrame {
         JButton survive = Tools.tileButton(10, 9, 4, 2);
         survive.setText("Survive");
         survive.addActionListener(e -> {
-            // TODO
             dispose();
+            nextStep(GameMode.SURVIVE);
         });
         return survive;
     }
+
     JButton back() {
         JButton back = Tools.tileButton(10, 13, 4, 2);
         back.setText("Back");
@@ -62,4 +63,19 @@ public class GameModeSelection extends GameFrame {
         });
         return back;
     }
+
+    void nextStep(GameMode mode) {
+        if (playerMode == PlayerMode.FRIENDLY) {
+            dispose();
+            new RoomSelection(mode);
+        } else {
+            // TODO
+        }
+    }
+
+    enum PlayerMode {
+        FRIENDLY,
+        COMPETITION
+    }
+
 }
