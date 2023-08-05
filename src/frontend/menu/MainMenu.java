@@ -25,8 +25,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton play() {
-        JButton play = Tools.tileButton(7, 1, 4, 2);
-        play.setText("Play");
+        JButton play = Tools.tileButton(7, 1, 4, 2, "Play");
         play.addActionListener(e -> {
             new PlayerModeSelection();
             dispose();
@@ -35,15 +34,13 @@ public class MainMenu extends GameFrame {
     }
 
     JButton profile() {
-        JButton profile = Tools.tileButton(13, 1, 4, 2);
-        profile.setText("Profile");
+        JButton profile = Tools.tileButton(13, 1, 4, 2, "Profile");
         profile.addActionListener(e -> new Profile());
         return profile;
     }
 
     JButton chat() {
-        JButton chat = Tools.tileButton(7, 5, 4, 2);
-        chat.setText("Chat");
+        JButton chat = Tools.tileButton(7, 5, 4, 2, "Chat");
         chat.addActionListener(e -> {
             // TODO
         });
@@ -51,8 +48,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton standing() {
-        JButton standing = Tools.tileButton(13, 5, 4, 2);
-        standing.setText("Standing");
+        JButton standing = Tools.tileButton(13, 5, 4, 2, "Standing");
         standing.addActionListener(e -> {
             // TODO
         });
@@ -60,8 +56,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton shop() {
-        JButton shop = Tools.tileButton(7, 9, 4, 2);
-        shop.setText("Shop");
+        JButton shop = Tools.tileButton(7, 9, 4, 2, "Shop");
         shop.addActionListener(e -> {
             // TODO
         });
@@ -69,8 +64,7 @@ public class MainMenu extends GameFrame {
     }
 
     JButton bags() {
-        JButton bags = Tools.tileButton(13, 9, 4, 2);
-        bags.setText("Bags");
+        JButton bags = Tools.tileButton(13, 9, 4, 2, "Bags");
         bags.addActionListener(e -> {
             // TODO
         });
@@ -79,8 +73,7 @@ public class MainMenu extends GameFrame {
 
 
     JButton back() {
-        JButton back = Tools.tileButton(10, 13, 4, 2);
-        back.setText("Back");
+        JButton back = Tools.tileButton(10, 13, 4, 2, "Back");
         back.addActionListener(e -> {
             new EnterPage();
             dispose();

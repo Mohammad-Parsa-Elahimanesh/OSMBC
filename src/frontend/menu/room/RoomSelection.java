@@ -5,6 +5,7 @@ import backend.User;
 import backend.network.request.EnterRoomStatus;
 import backend.network.request.Request;
 import frontend.GameFrame;
+import frontend.Tools;
 import frontend.menu.GameModeSelection;
 import frontend.notification.Notification;
 import frontend.notification.NotificationType;
@@ -45,7 +46,7 @@ public class RoomSelection extends GameFrame {
         return panelB;
     }
     JButton back() {
-        JButton back = new JButton("Back");
+        JButton back = Tools.tileButton(0,0,12,4, "Back");
         back.addActionListener(e -> {
             dispose();
             new GameModeSelection(GameModeSelection.PlayerMode.FRIENDLY);
@@ -54,8 +55,8 @@ public class RoomSelection extends GameFrame {
     }
     JPanel newRoom() {
         JPanel newRoom = new JPanel(new GridLayout(2,1));
-        JTextField password = new JTextField("password(EmptyForNoPassword)");
-        JButton newRoomButton = new JButton("New Room");
+        JTextField password = Tools.tileTextField(0,2,12,2, "\"password(EmptyForNoPassword)\"");
+        JButton newRoomButton = Tools.tileButton(0,0,12,2, "new Room");
         newRoomButton.addActionListener(e -> {
             if(password.getText().contains(" ")) {
                 Notification.notice(NotificationType.SPACE_IN_TEXT);
@@ -72,9 +73,9 @@ public class RoomSelection extends GameFrame {
     JPanel roomPanel(User creator, boolean lock) {
         JPanel enterRoomPanel = new JPanel(new GridLayout(1, lock?3:2));
 
-        JLabel nameBoss = new JLabel(creator.name);
-        JTextField password = new JTextField("password");
-        JButton enter = new JButton("Enter");
+        JLabel nameBoss = Tools.tileLabel(0,0,1,lock?8:12, creator.name);
+        JTextField password = Tools.tileTextField(0,0,1,lock?8:0, "password");
+        JButton enter = Tools.tileButton(0,0,1,lock?8:12, "Enter");
         enter.addActionListener(e -> {
            EnterRoomStatus status = Request.enterRoom(creator, lock?password.getText():"");
            switch (status) {
@@ -91,7 +92,6 @@ public class RoomSelection extends GameFrame {
         enterRoomPanel.add(nameBoss);
         if(lock)enterRoomPanel.add(password);
         enterRoomPanel.add(enter);
-        enterRoomPanel.setPreferredSize(new Dimension(100,100));
         enterRoomPanel.setBackground(creator.color());
         return enterRoomPanel;
     }

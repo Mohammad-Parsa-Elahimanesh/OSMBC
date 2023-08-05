@@ -24,8 +24,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton solo() {
-        JButton solo = Tools.tileButton(10, 1, 4, 2);
-        solo.setText("Solo");
+        JButton solo = Tools.tileButton(10, 1, 4, 2, "Solo");
         solo.addActionListener(e -> {
             new OfflineSoloPlayMenu();
             dispose();
@@ -34,8 +33,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton competition() {
-        JButton competition = Tools.tileButton(10, 5, 4, 2);
-        competition.setText("Competition");
+        JButton competition = Tools.tileButton(10, 5, 4, 2, "Competition");
         competition.addActionListener(e -> {
             if (!Manager.isConnected()) {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
@@ -48,8 +46,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton friendly() {
-        JButton friendly = Tools.tileButton(10, 9, 4, 2);
-        friendly.setText("Friendly");
+        JButton friendly = Tools.tileButton(10, 9, 4, 2,"Friendly");
         friendly.addActionListener(e -> {
             if (!Manager.isConnected()) {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
@@ -62,8 +59,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton back() {
-        JButton back = Tools.tileButton(10, 13, 4, 2);
-        back.setText("Back");
+        JButton back = Tools.tileButton(10, 13, 4, 2,"Back");
         back.addActionListener(e -> {
             new MainMenu();
             dispose();

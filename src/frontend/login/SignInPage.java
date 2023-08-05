@@ -13,8 +13,8 @@ import frontend.notification.NotificationType;
 import javax.swing.*;
 
 public class SignInPage extends GameFrame {
-    JTextField userName = userNameField();
-    JTextField password = passwordField();
+    JTextField userName = Tools.tileTextField(10, 5, 4, 1, "UserName");
+    JTextField password = Tools.tileTextField(10, 7, 4, 1, "Password");
 
     SignInPage() {
         super();
@@ -32,21 +32,8 @@ public class SignInPage extends GameFrame {
         new MainMenu();
     }
 
-    JTextField userNameField() {
-        JTextField userNameField = Tools.tileTextField(10, 5, 4, 1);
-        userNameField.setText("UserName");
-        return userNameField;
-    }
-
-    JTextField passwordField() {
-        JTextField passwordField = Tools.tileTextField(10, 7, 4, 1);
-        passwordField.setText("Password");
-        return passwordField;
-    }
-
     JButton enterButton() {
-        JButton enterButton = Tools.tileButton(10, 9, 4, 1);
-        enterButton.setText("Sign In");
+        JButton enterButton = Tools.tileButton(10, 9, 4, 1, "Sign In");
         enterButton.addActionListener(e -> {
             if (Manager.isConnected())
                 Request.users();
@@ -73,8 +60,7 @@ public class SignInPage extends GameFrame {
     }
 
     JButton backButton() {
-        JButton backButton = Tools.tileButton(10, 11, 4, 1);
-        backButton.setText("Back");
+        JButton backButton = Tools.tileButton(10, 11, 4, 1, "Back");
         backButton.addActionListener(e -> {
             dispose();
             new EnterPage();
