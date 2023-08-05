@@ -2,7 +2,6 @@ package backend;
 
 import backend.network.Connection;
 import backend.network.request.Request;
-import backend.offline.User;
 import backend.offline.block.mario.Mario;
 import backend.offline.game_play.Game;
 import backend.offline.game_play.Section;

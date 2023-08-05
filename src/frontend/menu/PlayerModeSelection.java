@@ -1,9 +1,12 @@
 package frontend.menu;
 
+import backend.Manager;
 import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.Tools;
 import frontend.menu.offline_game.OfflineSoloPlayMenu;
+import frontend.notification.Notification;
+import frontend.notification.NotificationType;
 
 import javax.swing.*;
 
@@ -34,6 +37,10 @@ public class PlayerModeSelection extends GameFrame {
         JButton competition = Tools.tileButton(10, 5, 4, 2);
         competition.setText("Competition");
         competition.addActionListener(e -> {
+            if(!Manager.isConnected()) {
+                Notification.notice(NotificationType.ONLINE_ACCESS);
+                return;
+            }
             new GameModeSelection(GameModeSelection.PlayerMode.COMPETITION);
             dispose();
         });
@@ -44,6 +51,10 @@ public class PlayerModeSelection extends GameFrame {
         JButton friendly = Tools.tileButton(10, 9, 4, 2);
         friendly.setText("Friendly");
         friendly.addActionListener(e -> {
+            if(!Manager.isConnected()) {
+                Notification.notice(NotificationType.ONLINE_ACCESS);
+                return;
+            }
             new GameModeSelection(GameModeSelection.PlayerMode.FRIENDLY);
             dispose();
         });

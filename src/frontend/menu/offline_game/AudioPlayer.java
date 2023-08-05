@@ -43,5 +43,6 @@ public class AudioPlayer {
         if (!silence && !silenceForever)
             getClip(name).start();
     }
-
+    // FIXME: convert to enum
+    // FIXME: stop songs when die and etc...
 }

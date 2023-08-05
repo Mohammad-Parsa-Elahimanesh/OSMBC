@@ -77,5 +77,5 @@ public class EnterPage extends GameFrame {
         exitButton.addActionListener(e -> System.exit(0));
         return exitButton;
     }
-
+    // FIXME: do not access to enter SignUp when we try to connect
 }

@@ -1,4 +1,4 @@
-package backend.offline;
+package backend;
 
 import backend.offline.game_play.Game;
 import backend.offline.game_play.Record;
@@ -11,6 +11,7 @@ public class User {
     private static final List<User> users = new ArrayList<>();
     public final List<Record> records = new ArrayList<>();
     public static User logedInUser;
+    public User[] friends = new User[0];
     public final Game[] game = new Game[3];
     public final String name;
     public final int password;
@@ -29,7 +30,12 @@ public class User {
     public static List<User> getUsers() {
         return new ArrayList<>(users);
     }
-
+    public static User find(String name) {
+        for(User user: users)
+            if (user.name.equals(name))
+                return user;
+        return null;
+    }
     public void runGame(int index) {
         currentGameIndex = index;
         if (game[index] == null)

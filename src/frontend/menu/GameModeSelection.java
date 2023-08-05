@@ -46,7 +46,7 @@ public class GameModeSelection extends GameFrame {
 
     JButton survive() {
         JButton survive = Tools.tileButton(10, 9, 4, 2);
-        survive.setText("Friendly");
+        survive.setText("Survive");
         survive.addActionListener(e -> {
             // TODO
             dispose();

@@ -3,7 +3,7 @@ package frontend.login;
 import backend.Manager;
 import backend.network.request.Request;
 import backend.network.request.SignInStatus;
-import backend.offline.User;
+import backend.User;
 import frontend.GameFrame;
 import frontend.notification.Notification;
 import frontend.Tools;
