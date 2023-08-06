@@ -26,6 +26,7 @@ public class ExitOrResume extends GameFrame {
         JButton exitGame = new JButton("Exit Game");
         exitGame.addActionListener(e -> {
             new MainMenu();
+            Manager.currentGame().offlineGameFrame.dispose();
             dispose();
         });
         exitGame.setToolTipText("Your progress will be saved !");

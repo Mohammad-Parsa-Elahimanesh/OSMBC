@@ -4,6 +4,7 @@ import backend.GameMode;
 import backend.User;
 import backend.network.request.EnterRoomStatus;
 import backend.network.request.Request;
+import backend.online.room.Room;
 import frontend.GameFrame;
 import frontend.Tools;
 import frontend.menu.GameModeSelection;
@@ -25,7 +26,7 @@ public class RoomSelection extends GameFrame {
         panel.add(scrollPane);
         panel.add(buttons());
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        timer = new Timer(3000, e -> {
+        timer = new Timer(10000, e -> {
             if(!isDisplayable())
                 timer.stop();
             Map<User, Boolean> rooms = Request.rooms(gameMode);
@@ -33,8 +34,8 @@ public class RoomSelection extends GameFrame {
             for(Map.Entry<User, Boolean> entry : rooms.entrySet())
                 panelScroll.add(roomPanel(entry.getKey(), entry.getValue()));
             scrollPane.setViewportView(panelScroll);
-            System.out.println(rooms.size()+" "+scrollPane.getComponentCount());
         });
+        timer.setInitialDelay(0);
         timer.start();
         add(panel);
         setVisible(true);
@@ -55,16 +56,17 @@ public class RoomSelection extends GameFrame {
     }
     JPanel newRoom() {
         JPanel newRoom = new JPanel(new GridLayout(2,1));
-        JTextField password = Tools.tileTextField(0,2,12,2, "\"password(EmptyForNoPassword)\"");
+        JTextField password = Tools.tileTextField(0,2,12,2, "password(EmptyForNoPassword)");
         JButton newRoomButton = Tools.tileButton(0,0,12,2, "new Room");
         newRoomButton.addActionListener(e -> {
             if(password.getText().contains(" ")) {
                 Notification.notice(NotificationType.SPACE_IN_TEXT);
                 return;
             }
-            //dispose();
-            Request.makeRoom(gameMode, password.getText().replace(" ", ""));
-            // TODO
+            dispose();
+            String pass = password.getText().replace(" ", "");
+            Request.makeRoom(gameMode, pass);
+            new Room(pass);
         });
         newRoom.add(newRoomButton);
         newRoom.add(password);
@@ -83,8 +85,8 @@ public class RoomSelection extends GameFrame {
                case INACTIVE_ROOM -> Notification.notice(NotificationType.INACTIVE_ROOM);
                case INCORRECT_PASSWORD -> Notification.notice(NotificationType.INCORRECT_PASSWORD);
                case SUCCESS -> {
-                   //dispose();
-                   // TODO
+                   dispose();
+                   new Room(password.getText());
                }
            }
         });

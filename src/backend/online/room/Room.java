@@ -5,6 +5,7 @@ import backend.User;
 import backend.network.request.Request;
 import backend.online.SMS;
 import frontend.menu.MainMenu;
+import frontend.menu.room.RoomFrame;
 import frontend.notification.Notification;
 
 import javax.swing.*;
@@ -13,15 +14,19 @@ import java.util.Map;
 
 public class Room {
     static final double DELAY = 1;
+    RoomFrame frame = new RoomFrame();
     final String password;
     Map<User, AccessLevel> gamers = new HashMap<>();
     Map<User, AccessLevel> watchers = new HashMap<>();
     User[] kicked = new User[0];
-    SMS[] chats = new SMS[0];
+    public SMS[] chats = new SMS[0];
     RoomState state = RoomState.OPEN;
-    Room(String password) { // TODO NO SPACE IN PASSWORD
+    public Room(String password) {
         this.password = (password.length() == 0 ? null : password);
-    }    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
+        frame.setVisible(true);
+        updateInfo.start();
+    }
+    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
         synchronized (Manager.connection) {
             Request.users();
             Request.friendInvitation();
@@ -42,6 +47,7 @@ public class Room {
             chats = Request.roomChats();
             gamers = Request.roomGamers();
             watchers = Request.roomWatchers();
+            frame.frameUpdate(this);
         }
     });
 
