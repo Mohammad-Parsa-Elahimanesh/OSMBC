@@ -41,11 +41,6 @@ public class Room {
         synchronized (Manager.connection) {
             Request.users();
             Request.friendInvitation();
-            state = Request.roomState();
-            if (state == RoomState.FINISHED) {
-                end();
-                return;
-            }
             kicked = Request.kicked();
             for (User removed : kicked)
                 if (removed.equals(Manager.currentUser())) {
@@ -53,6 +48,11 @@ public class Room {
                     new Notification("Kicked", "Sorry but room Managers kicked you from the room!");
                     return;
                 }
+            state = Request.roomState();
+            if (state == RoomState.FINISHED) {
+                end();
+                return;
+            }
             chats = Request.roomChats();
             gamers = Request.roomGamers();
             watchers = Request.roomWatchers();
@@ -60,8 +60,4 @@ public class Room {
         }
     });
 
-
-
-
-    // TODO STATE ...
 }
