@@ -31,6 +31,12 @@ public class Room {
 
     public AccessLevel getAccessLevel(User user) {
         return gamers.getOrDefault(user, watchers.getOrDefault(user, AccessLevel.USER));
+    }
+
+    public void end() {
+        updateInfo.stop();
+        frame.dispose();
+        new MainMenu();
     }    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
         synchronized (Manager.connection) {
             Request.users();
@@ -53,12 +59,6 @@ public class Room {
             frame.frameUpdate();
         }
     });
-
-    public void end() {
-        updateInfo.stop();
-        frame.dispose();
-        new MainMenu();
-    }
 
 
 

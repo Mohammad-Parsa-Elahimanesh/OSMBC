@@ -30,7 +30,8 @@ public class Section {
     private int length;
     private int wholeTime;
     private Section nextSection;
-    private double spentTime = 0;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
+    private double spentTime = 0;
+    private int coins = 0;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
         Manager.currentGame().offlineGameFrame.repaint();
         Manager.currentSection().update();
     }) {
@@ -46,7 +47,6 @@ public class Section {
             AudioPlayer.setSilence(true);
         }
     };
-    private int coins = 0;
     Section(int section, Mario mario, String name) throws Exception {
         this.name = name;
         add(new Brick(1, 30, -1, 0));

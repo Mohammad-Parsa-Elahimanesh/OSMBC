@@ -4,6 +4,7 @@ import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.Tools;
 import frontend.login.EnterPage;
+import frontend.menu.pv_chat.ChatLists;
 
 import javax.swing.*;
 
@@ -42,7 +43,8 @@ public class MainMenu extends GameFrame {
     JButton chat() {
         JButton chat = Tools.tileButton(7, 5, 4, 2, "Chat");
         chat.addActionListener(e -> {
-            // TODO
+            dispose();
+            new ChatLists();
         });
         return chat;
     }

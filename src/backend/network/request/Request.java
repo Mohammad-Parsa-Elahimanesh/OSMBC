@@ -235,4 +235,33 @@ public class Request {
                 Manager.currentUser().records.add(gameRecord);
         }
     }
+
+    public static void block(User user) {
+        Manager.connection.send(RequestType.BLOCK + " " + user.name);
+    }
+
+    public static void unblock(User user) {
+        Manager.connection.send(RequestType.UNBLOCK + " " + user.name);
+    }
+
+    public static User[] blocked() {
+        synchronized (Manager.connection) {
+            Manager.connection.send(RequestType.BLOCK_LIST);
+            User[] blocked = new User[Manager.connection.nextInt()];
+            for (int i = 0; i < blocked.length; i++)
+                blocked[i] = User.find(Manager.connection.next());
+            return blocked;
+        }
+    }
+
+    public static User[] blockers() {
+        synchronized (Manager.connection) {
+            Manager.connection.send(RequestType.BLOCKER_LIST);
+            User[] blocker = new User[Manager.connection.nextInt()];
+            for (int i = 0; i < blocker.length; i++)
+                blocker[i] = User.find(Manager.connection.next());
+            return blocker;
+        }
+    }
+
 }
