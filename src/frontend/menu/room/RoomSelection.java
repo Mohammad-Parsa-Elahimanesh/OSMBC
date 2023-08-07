@@ -56,7 +56,7 @@ public class RoomSelection extends GameFrame {
     }
     JPanel newRoom() {
         JPanel newRoom = new JPanel(new GridLayout(2,1));
-        JTextField password = Tools.tileTextField(0,2,12,2, "password(EmptyForNoPassword)");
+        JTextField password = Tools.tileTextField(0,2,12,2, "password");
         JButton newRoomButton = Tools.tileButton(0,0,12,2, "new Room");
         newRoomButton.addActionListener(e -> {
             if(password.getText().contains(" ")) {

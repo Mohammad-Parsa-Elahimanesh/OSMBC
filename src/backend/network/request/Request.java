@@ -179,6 +179,17 @@ public class Request {
         Manager.connection.send(RequestType.ROOM_STATE);
         return RoomState.valueOf(Manager.connection.next());
     }
+    public static void sendMassage(User receiver, String text) {
+        Manager.connection.send(RequestType.SEND_MASSAGE+" "+receiver.name+" "+SMS.makeInLine(text));
+    }
+    public static SMS[] getMassages(User user) {
+        Manager.connection.send(RequestType.GET_MASSAGES+" "+user.name);
+        int count = Manager.connection.nextInt();
+        SMS[] chats = new SMS[count];
+        for (int i = 0; i < count; i++)
+            chats[i] = new SMS(User.find(Manager.connection.next()), SMS.makeRegular(Manager.connection.next()));
+        return chats;
+    }
 
 
     private static void friends() {
