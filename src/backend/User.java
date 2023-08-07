@@ -4,13 +4,13 @@ import backend.offline.game_play.Game;
 import backend.offline.game_play.Record;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
 public class User {
-    private static final List<User> users = new ArrayList<>();
-    static final Color[] colors = {Color.green, Color.blue, Color.yellow, Color.red, Color.black};
+    static final Color[] colors = {Color.green, Color.MAGENTA, Color.blue, Color.yellow, Color.red, Color.cyan, Color.white};
     static final Map<User, Color> peopleColors = new HashMap<>();
+    private static final List<User> users = new ArrayList<>();
     public static User logedInUser;
     public final List<Record> records = new ArrayList<>();
     public final Game[] game = new Game[3];
@@ -52,6 +52,7 @@ public class User {
         else
             game[index].currentSection.timer.start();
     }
+
     public Color color() {
         return peopleColors.get(this);
     }

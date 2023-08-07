@@ -31,6 +31,7 @@ public class Notification extends JFrame {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     if (method != null)
                         method.run();
+                    setVisible(false);
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     setVisible(false);
                 }

@@ -25,7 +25,7 @@ public class GameModeSelection extends GameFrame {
     }
 
     JButton adventure() {
-        JButton adventure = Tools.tileButton(10, 1, 4, 2,"Adventure");
+        JButton adventure = Tools.tileButton(10, 1, 4, 2, "Adventure");
         adventure.addActionListener(e -> {
             dispose();
             nextStep(GameMode.ADVENTURE);
@@ -43,7 +43,7 @@ public class GameModeSelection extends GameFrame {
     }
 
     JButton survive() {
-        JButton survive = Tools.tileButton(10, 9, 4, 2,"Survive");
+        JButton survive = Tools.tileButton(10, 9, 4, 2, "Survive");
         survive.addActionListener(e -> {
             dispose();
             nextStep(GameMode.SURVIVE);
@@ -52,7 +52,7 @@ public class GameModeSelection extends GameFrame {
     }
 
     JButton back() {
-        JButton back = Tools.tileButton(10, 13, 4, 2,"Back");
+        JButton back = Tools.tileButton(10, 13, 4, 2, "Back");
         back.addActionListener(e -> {
             new PlayerModeSelection();
             dispose();

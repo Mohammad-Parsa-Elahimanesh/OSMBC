@@ -29,7 +29,8 @@ public class Section {
     private final List<Block> mustBeRemoved = new ArrayList<>();
     private int length;
     private int wholeTime;
-    private Section nextSection;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
+    private Section nextSection;
+    private double spentTime = 0;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
         Manager.currentGame().offlineGameFrame.repaint();
         Manager.currentSection().update();
     }) {
@@ -45,7 +46,6 @@ public class Section {
             AudioPlayer.setSilence(true);
         }
     };
-    private double spentTime = 0;
     private int coins = 0;
     Section(int section, Mario mario, String name) throws Exception {
         this.name = name;

@@ -46,7 +46,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton friendly() {
-        JButton friendly = Tools.tileButton(10, 9, 4, 2,"Friendly");
+        JButton friendly = Tools.tileButton(10, 9, 4, 2, "Friendly");
         friendly.addActionListener(e -> {
             if (!Manager.isConnected()) {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
@@ -59,7 +59,7 @@ public class PlayerModeSelection extends GameFrame {
     }
 
     JButton back() {
-        JButton back = Tools.tileButton(10, 13, 4, 2,"Back");
+        JButton back = Tools.tileButton(10, 13, 4, 2, "Back");
         back.addActionListener(e -> {
             new MainMenu();
             dispose();

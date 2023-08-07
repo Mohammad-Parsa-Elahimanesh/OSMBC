@@ -14,20 +14,24 @@ import java.util.Map;
 
 public class Room {
     static final double DELAY = 1;
-    RoomFrame frame;
     final String password;
-    Map<User, AccessLevel> gamers = new HashMap<>();
-    Map<User, AccessLevel> watchers = new HashMap<>();
-    User[] kicked = new User[0];
+    public Map<User, AccessLevel> gamers = new HashMap<>();
+    public Map<User, AccessLevel> watchers = new HashMap<>();
     public SMS[] chats = new SMS[0];
     public RoomState state = RoomState.OPEN;
+    RoomFrame frame;
+    User[] kicked = new User[0];
+
     public Room(String password) {
         this.password = (password.length() == 0 ? null : password);
         frame = new RoomFrame(this);
         frame.setVisible(true);
         updateInfo.start();
     }
-    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
+
+    public AccessLevel getAccessLevel(User user) {
+        return gamers.getOrDefault(user, watchers.getOrDefault(user, AccessLevel.USER));
+    }    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
         synchronized (Manager.connection) {
             Request.users();
             Request.friendInvitation();
@@ -49,15 +53,14 @@ public class Room {
             frame.frameUpdate();
         }
     });
-    public AccessLevel getAccessLevel(User user) {
-        return gamers.getOrDefault(user, watchers.getOrDefault(user, AccessLevel.USER));
-    }
 
     public void end() {
         updateInfo.stop();
         frame.dispose();
         new MainMenu();
     }
+
+
 
 
     // TODO STATE ...

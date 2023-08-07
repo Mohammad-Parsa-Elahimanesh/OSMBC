@@ -2,10 +2,6 @@ package backend.online;
 
 import backend.User;
 
-import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
-
 public class SMS {
     static final String SPACE = "!%#$";
     static final String LINE = "*%^&%*";

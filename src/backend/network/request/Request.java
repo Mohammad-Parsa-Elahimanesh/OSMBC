@@ -21,7 +21,7 @@ public class Request {
         int count = Manager.connection.nextInt();
         for (int i = 0; i < count; i++)
             new User(Manager.connection.next(), Manager.connection.nextInt());
-        if(User.logedInUser != null)
+        if (User.logedInUser != null)
             friends();
     }
 
@@ -66,7 +66,7 @@ public class Request {
         users();
         Manager.connection.send(RequestType.ROOMS + " " + mode);
         int count = Manager.connection.nextInt();
-        Map<User, Boolean> rooms = new HashMap();
+        Map<User, Boolean> rooms = new HashMap<>();
         for (int i = 0; i < count; i++)
             rooms.put(User.find(Manager.connection.next()), Manager.connection.next().equals("Y"));
         return rooms;
@@ -102,7 +102,6 @@ public class Request {
 
     public static void leaveRoom() {
         Manager.connection.send(RequestType.LEAVE_ROOM);
-        // TODO, new menu, dispose room and ...
     }
 
     public static void sayReady() {
@@ -179,11 +178,13 @@ public class Request {
         Manager.connection.send(RequestType.ROOM_STATE);
         return RoomState.valueOf(Manager.connection.next());
     }
+
     public static void sendMassage(User receiver, String text) {
-        Manager.connection.send(RequestType.SEND_MASSAGE+" "+receiver.name+" "+SMS.makeInLine(text));
+        Manager.connection.send(RequestType.SEND_MASSAGE + " " + receiver.name + " " + SMS.makeInLine(text));
     }
+
     public static SMS[] getMassages(User user) {
-        Manager.connection.send(RequestType.GET_MASSAGES+" "+user.name);
+        Manager.connection.send(RequestType.GET_MASSAGES + " " + user.name);
         int count = Manager.connection.nextInt();
         SMS[] chats = new SMS[count];
         for (int i = 0; i < count; i++)
