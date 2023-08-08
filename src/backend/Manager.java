@@ -12,6 +12,8 @@ import frontend.notification.Notification;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Manager {
     public static final int SERVER_PORT = 50000;
@@ -28,9 +30,16 @@ public class Manager {
     public static Point location;
     public static Connection connection;
     private static SMS lastSMS = null;
-    public static Timer updater = new Timer(2000, e -> {
+    public static String[][] items = new String[0][0];
+    public static Timer updater = new Timer(3000, e -> {
         synchronized (connection) {
             Request.users();
+            Request.items();
+            System.out.println(items.length);
+            for(String[] item : items) {
+                System.out.println(item[0]+" : "+item[1]+" & "+item[2]);
+            }
+            System.out.println();
             if (currentUser() != null && (currentUser().friends.length > 0)) {
                 SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
                 if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length - 1].user != currentUser()) {

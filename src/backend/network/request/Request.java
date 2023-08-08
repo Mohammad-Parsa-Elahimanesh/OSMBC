@@ -271,4 +271,28 @@ public class Request {
         return Manager.connection.nextLine().split("~");
     }
 
+    public static int onlineCoins() {
+        Manager.connection.send(RequestType.ONLINE_COINS);
+        return Manager.connection.nextInt();
+    }
+    public static int gems() {
+        Manager.connection.send(RequestType.GEMS);
+        return Manager.connection.nextInt();
+    }
+    public static void convertToCoins(int cnt) {
+        Manager.connection.send(RequestType.CONVERT_TO_COINS+" "+cnt);
+    }
+    public static void items() {
+        synchronized (Manager.items) {
+            Manager.connection.send(RequestType.ITEMS);
+            int count = Manager.connection.nextInt();
+            Manager.items = new String[count][3];
+            for (int i = 0; i < count; i++) {
+                Manager.items[i][0] = Manager.connection.next();
+                Manager.items[i][1] = Manager.connection.next();
+                Manager.items[i][2] = Manager.connection.next().replace("&", " ");
+            }
+        }
+
+    }
 }
