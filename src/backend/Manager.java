@@ -58,6 +58,7 @@ public class Manager {
 
     public static void start(int locationPart) {
         location = new Point((locationPart & 1) * (SCREEN_WIDTH + 15), (locationPart / 2) * (SCREEN_HEIGHT + 15));
+        updater.setInitialDelay(0);
     }
 
     public static User currentUser() {

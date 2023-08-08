@@ -303,4 +303,8 @@ public class Request {
         Manager.connection.send(RequestType.LEVEL);
         return Manager.connection.nextInt();
     }
+    public static BuyStatus buy(String item) {
+        Manager.connection.send(RequestType.BUY+" "+item);
+        return BuyStatus.valueOf(Manager.connection.next());
+    }
 }
