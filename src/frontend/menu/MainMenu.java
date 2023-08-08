@@ -1,10 +1,13 @@
 package frontend.menu;
 
+import backend.Manager;
 import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.Tools;
 import frontend.login.EnterPage;
 import frontend.menu.pv_chat.ChatLists;
+import frontend.notification.Notification;
+import frontend.notification.NotificationType;
 
 import javax.swing.*;
 
@@ -52,7 +55,11 @@ public class MainMenu extends GameFrame {
     JButton standing() {
         JButton standing = Tools.tileButton(13, 5, 4, 2, "Standing");
         standing.addActionListener(e -> {
-            // TODO
+            if(Manager.isConnected()) {
+                new Standing();
+            } else {
+                Notification.notice(NotificationType.ONLINE_ACCESS);
+            }
         });
         return standing;
     }

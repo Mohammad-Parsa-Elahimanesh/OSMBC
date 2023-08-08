@@ -194,7 +194,6 @@ public class Request {
         return chats;
     }
 
-
     private static void friends() {
         Manager.connection.send(RequestType.FRIENDS);
         int count = Manager.connection.nextInt();
@@ -259,11 +258,17 @@ public class Request {
     public static User[] blockers() {
         synchronized (Manager.connection) {
             Manager.connection.send(RequestType.BLOCKER_LIST);
-            User[] blocker = new User[Manager.connection.nextInt()];
+            User[] blocker = new User[Integer.parseInt(Manager.connection.nextLine())];
             for (int i = 0; i < blocker.length; i++)
-                blocker[i] = User.find(Manager.connection.next());
+                blocker[i] = User.find(Manager.connection.nextLine());
             return blocker;
         }
+    }
+
+    public static String[] standings() {
+        Manager.connection.send(RequestType.STANDINGS);
+        Manager.connection.nextInt();
+        return Manager.connection.nextLine().split("~");
     }
 
 }

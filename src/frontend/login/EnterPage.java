@@ -10,10 +10,12 @@ import frontend.notification.NotificationType;
 import javax.swing.*;
 
 public class EnterPage extends GameFrame {
+    JButton connection = serverConnection();
+    static final String[] states = {"Connected", "Connecting ...", "Disconnected", "Disconnecting ..."};
     public EnterPage() {
         super();
         JPanel panel = new JPanel(null);
-        panel.add(serverConnection());
+        panel.add(connection);
         panel.add(signInButton());
         panel.add(signUpButton());
         panel.add(exitButton());
@@ -24,7 +26,6 @@ public class EnterPage extends GameFrame {
     }
 
     JButton serverConnection() {
-        final String[] states = {"Connected", "Connecting ...", "Disconnected", "Disconnecting ..."};
         JButton serverConnection = Tools.tileButton(10, 2, 4, 2, Manager.isConnected() ? states[0] : states[2]);
         serverConnection.addActionListener(e -> {
             if (serverConnection.getText().equals(states[2])) {
@@ -58,7 +59,7 @@ public class EnterPage extends GameFrame {
     JButton signUpButton() {
         JButton signUpButton = Tools.tileButton(10, 8, 4, 2, "Sign Up");
         signUpButton.addActionListener(e -> {
-            if (Manager.isConnected()) {
+            if (Manager.isConnected() && connection.getText().equals(states[0])) {
                 new SignUpPage();
                 dispose();
             } else {
@@ -73,5 +74,5 @@ public class EnterPage extends GameFrame {
         exitButton.addActionListener(e -> System.exit(0));
         return exitButton;
     }
-    // FIXME: do not access to enter SignUp when we try to connect
+
 }

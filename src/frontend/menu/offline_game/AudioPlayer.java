@@ -44,5 +44,6 @@ public class AudioPlayer {
             getClip(name).start();
     }
     // FIXME: convert to enum
+    // FIXME: add notification sound
     // FIXME: stop songs when die and etc...
 }

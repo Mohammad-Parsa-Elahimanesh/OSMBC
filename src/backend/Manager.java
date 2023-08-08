@@ -29,12 +29,14 @@ public class Manager {
     public static Connection connection;
     private static SMS lastSMS = null;
     public static Timer updater = new Timer(2000, e -> {
-        Request.users();
-        if (currentUser() != null && (currentUser().friends.length > 0)) {
-            SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
-            if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length-1].user != currentUser()) {
-                lastSMS = smsEs[smsEs.length - 1];
-                new Notification("New massage", lastSMS.user.name + " just send you new massage\n" + lastSMS.text.substring(0, Math.min(40, lastSMS.text.length())), () -> new PV(lastSMS.user));
+        synchronized (connection) {
+            Request.users();
+            if (currentUser() != null && (currentUser().friends.length > 0)) {
+                SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
+                if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length - 1].user != currentUser()) {
+                    lastSMS = smsEs[smsEs.length - 1];
+                    new Notification("New massage", lastSMS.user.name + " just send you new massage\n" + lastSMS.text.substring(0, Math.min(40, lastSMS.text.length())), () -> new PV(lastSMS.user));
+                }
             }
         }
     });

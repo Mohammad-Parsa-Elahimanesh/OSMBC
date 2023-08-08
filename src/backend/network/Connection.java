@@ -25,7 +25,7 @@ public class Connection {
     public String next() {
         return scanner.next();
     }
-
+    public String nextLine() {return scanner.nextLine();}
     public int nextInt() {
         return scanner.nextInt();
     }
