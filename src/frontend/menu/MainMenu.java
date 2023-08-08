@@ -55,7 +55,7 @@ public class MainMenu extends GameFrame {
     JButton standing() {
         JButton standing = Tools.tileButton(13, 5, 4, 2, "Standing");
         standing.addActionListener(e -> {
-            if(Manager.isConnected()) {
+            if (Manager.isConnected()) {
                 new Standing();
             } else {
                 Notification.notice(NotificationType.ONLINE_ACCESS);
@@ -66,9 +66,7 @@ public class MainMenu extends GameFrame {
 
     JButton shop() {
         JButton shop = Tools.tileButton(7, 9, 4, 2, "Shop");
-        shop.addActionListener(e -> {
-            // TODO
-        });
+        shop.addActionListener(e -> new Shop());
         return shop;
     }
 

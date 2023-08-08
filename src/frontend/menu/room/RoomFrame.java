@@ -91,7 +91,7 @@ public class RoomFrame extends GameFrame {
         sendFriendRequest.addActionListener(e -> Request.toBeFriend(user));
         userButtons.add(sendFriendRequest);
 
-        if(room.getAccessLevel(Manager.currentUser()) != AccessLevel.USER) {
+        if (room.getAccessLevel(Manager.currentUser()) != AccessLevel.USER) {
             JButton setManager = new JButton("Set Manager");
             setManager.addActionListener(e -> Request.setManager(user));
             userButtons.add(setManager);

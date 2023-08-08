@@ -43,7 +43,7 @@ public class ChatLists extends GameFrame {
 
         JButton button = new JButton(user.name);
         button.addActionListener(e -> {
-            if(Manager.isConnected())
+            if (Manager.isConnected())
                 new PV(user);
             else
                 Notification.notice(NotificationType.ONLINE_ACCESS);

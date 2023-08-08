@@ -41,7 +41,7 @@ public class Chats extends JScrollPane {
                 text.append(" <br> ");
         }
         text.append("</html>");
-        JLabel smsLabel = Tools.tileLabel(0, 0, 8, 4, hide?"click on content to be visible":text.toString());
+        JLabel smsLabel = Tools.tileLabel(0, 0, 8, 4, hide ? "click on content to be visible" : text.toString());
         smsLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

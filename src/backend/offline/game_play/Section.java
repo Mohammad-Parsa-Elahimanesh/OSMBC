@@ -83,6 +83,10 @@ public class Section {
 
     public double getWholeTime() {
         return wholeTime;
+    }
+
+    public double getSpentTime() {
+        return spentTime;
     }    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
         Manager.currentGame().offlineGameFrame.repaint();
         Manager.currentSection().update();
@@ -99,10 +103,6 @@ public class Section {
             AudioPlayer.setSilence(true);
         }
     };
-
-    public double getSpentTime() {
-        return spentTime;
-    }
 
     public void add(Block block) {
         mustBeAdded.add(block);

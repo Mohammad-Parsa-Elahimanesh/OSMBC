@@ -114,8 +114,9 @@ public class Request {
     public static void kick(User user) {
         Manager.connection.send(RequestType.KICK + " " + user.name);
     }
+
     public static void roomBlock(User user) {
-        Manager.connection.send(RequestType.ROOM_BLOCK+" "+user.name);
+        Manager.connection.send(RequestType.ROOM_BLOCK + " " + user.name);
     }
 
     public static void openRoom() {
@@ -275,13 +276,16 @@ public class Request {
         Manager.connection.send(RequestType.ONLINE_COINS);
         return Manager.connection.nextInt();
     }
+
     public static int gems() {
         Manager.connection.send(RequestType.GEMS);
         return Manager.connection.nextInt();
     }
+
     public static void convertToCoins(int cnt) {
-        Manager.connection.send(RequestType.CONVERT_TO_COINS+" "+cnt);
+        Manager.connection.send(RequestType.CONVERT_TO_COINS + " " + cnt);
     }
+
     public static void items() {
         synchronized (Manager.items) {
             Manager.connection.send(RequestType.ITEMS);
@@ -293,6 +297,10 @@ public class Request {
                 Manager.items[i][2] = Manager.connection.next().replace("&", " ");
             }
         }
+    }
 
+    public static int level() {
+        Manager.connection.send(RequestType.LEVEL);
+        return Manager.connection.nextInt();
     }
 }

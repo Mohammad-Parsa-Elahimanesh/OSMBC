@@ -10,8 +10,9 @@ import frontend.notification.NotificationType;
 import javax.swing.*;
 
 public class EnterPage extends GameFrame {
-    JButton connection = serverConnection();
     static final String[] states = {"Connected", "Connecting ...", "Disconnected", "Disconnecting ..."};
+    JButton connection = serverConnection();
+
     public EnterPage() {
         super();
         JPanel panel = new JPanel(null);

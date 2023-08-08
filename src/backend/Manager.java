@@ -6,14 +6,13 @@ import backend.offline.block.mario.Mario;
 import backend.offline.game_play.Game;
 import backend.offline.game_play.Section;
 import backend.online.SMS;
+import frontend.menu.Shop;
 import frontend.menu.pv_chat.PV;
 import frontend.notification.Notification;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Manager {
     public static final int SERVER_PORT = 50000;
@@ -29,22 +28,26 @@ public class Manager {
     public static final Font PROFILE_RECORD_FONT = new Font("Arial", Font.PLAIN, 20);
     public static Point location;
     public static Connection connection;
-    private static SMS lastSMS = null;
     public static String[][] items = new String[0][0];
+    private static SMS lastSMS = null;
+    private static int lastLevel = 0;
+
     public static Timer updater = new Timer(3000, e -> {
         synchronized (connection) {
             Request.users();
             Request.items();
-            System.out.println(items.length);
-            for(String[] item : items) {
-                System.out.println(item[0]+" : "+item[1]+" & "+item[2]);
-            }
-            System.out.println();
-            if (currentUser() != null && (currentUser().friends.length > 0)) {
-                SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
-                if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length - 1].user != currentUser()) {
-                    lastSMS = smsEs[smsEs.length - 1];
-                    new Notification("New massage", lastSMS.user.name + " just send you new massage\n" + lastSMS.text.substring(0, Math.min(40, lastSMS.text.length())), () -> new PV(lastSMS.user));
+            if (currentUser() != null) {
+                int level = Request.level();
+                if(lastLevel != level) {
+                    lastLevel = level;
+                    new Notification("Level increases", "Do you want to check shop for new Items?", Shop::new);
+                }
+                if (currentUser().friends.length > 0) {
+                    SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
+                    if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length - 1].user != currentUser()) {
+                        lastSMS = smsEs[smsEs.length - 1];
+                        new Notification("New massage", lastSMS.user.name + " just send you new massage\n" + lastSMS.text.substring(0, Math.min(40, lastSMS.text.length())), () -> new PV(lastSMS.user));
+                    }
                 }
             }
         }
