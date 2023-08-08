@@ -53,17 +53,16 @@ public class Request {
 
     public static void close() {
         if (Manager.isConnected()) {
-            users();
+            Manager.updater.stop();
             signOut();
             Manager.connection.send(RequestType.CLOSE);
-            Manager.sleep(3000);
+            Manager.connection = null;
+            Manager.sleep(1500);
         }
-        Manager.connection = null;
     }
 
 
     public static Map<User, Boolean> rooms(GameMode mode) {
-        users();
         Manager.connection.send(RequestType.ROOMS + " " + mode);
         int count = Manager.connection.nextInt();
         Map<User, Boolean> rooms = new HashMap<>();

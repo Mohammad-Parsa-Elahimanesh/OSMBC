@@ -21,6 +21,7 @@ public class Room {
     public RoomState state = RoomState.OPEN;
     RoomFrame frame;
     User[] kicked = new User[0];
+    private boolean firstTime = true;
 
     public Room(String password) {
         this.password = (password.length() == 0 ? null : password);
@@ -37,9 +38,10 @@ public class Room {
         updateInfo.stop();
         frame.dispose();
         new MainMenu();
-    }    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
+    }
+
+    Timer updateInfo = new Timer((int) (DELAY * 1000), e -> {
         synchronized (Manager.connection) {
-            Request.users();
             Request.friendInvitation();
             kicked = Request.kicked();
             for (User removed : kicked)
@@ -56,6 +58,13 @@ public class Room {
             chats = Request.roomChats();
             gamers = Request.roomGamers();
             watchers = Request.roomWatchers();
+            if (firstTime) {
+                firstTime = false;
+                User[] blockedUsers = Request.blocked();
+                for (User blocked : blockedUsers)
+                    if (gamers.containsKey(blocked) || watchers.containsKey(blocked))
+                        new Notification("Unfriendly", "User " + blocked.name + " is here, you already blocked him, there is one imposter among us!");
+            }
             frame.frameUpdate();
         }
     });

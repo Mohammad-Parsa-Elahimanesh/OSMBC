@@ -20,7 +20,6 @@ public class ChatLists extends GameFrame {
     User[] blockerFriends;
 
     public ChatLists() {
-        Request.users();
         blockedFriends = Request.blocked();
         blockerFriends = Request.blockers();
         mainPanel = usersPanel(Manager.currentUser().friends);
@@ -38,26 +37,25 @@ public class ChatLists extends GameFrame {
     }
 
     JPanel userPanel(User user) {
-        JPanel userPanel = new JPanel(new GridLayout(1,3));
+        JPanel userPanel = new JPanel(new GridLayout(1, 3));
 
         JButton button = new JButton(user.name);
         button.addActionListener(e -> new PV(user));
         userPanel.add(button);
 
         String[] bs = {"Block", "Unblock"};
-        JButton blockOrNot = new JButton(Arrays.asList(blockedFriends).contains(user) ?bs[1]:bs[0]);
+        JButton blockOrNot = new JButton(Arrays.asList(blockedFriends).contains(user) ? bs[1] : bs[0]);
         blockOrNot.addActionListener(e -> {
-            if(blockOrNot.getText().equals(bs[0])) {
+            if (blockOrNot.getText().equals(bs[0])) {
                 Request.block(user);
                 blockOrNot.setText(bs[1]);
-            }
-            else {
+            } else {
                 Request.unblock(user);
                 blockOrNot.setText(bs[0]);
             }
         });
         userPanel.add(blockOrNot);
-        userPanel.add(new JLabel(Arrays.asList(blockerFriends).contains(user)?"blocked":"not blocked"));
+        userPanel.add(new JLabel(Arrays.asList(blockerFriends).contains(user) ? "blocked" : "not blocked"));
         userPanel.setBackground(user.color());
         return userPanel;
     }
@@ -67,15 +65,15 @@ public class ChatLists extends GameFrame {
         search.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {/**/}
+
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getExtendedKeyCode() == KeyEvent.VK_ENTER && search.getCaretPosition() == search.getText().length()) {
-                    Request.users();
                     blockedFriends = Request.blocked();
                     blockerFriends = Request.blockers();
                     List<User> searchedFriends = new ArrayList<>();
-                    for(User friend : Manager.currentUser().friends)
-                        if(friend.name.contains(search.getText()))
+                    for (User friend : Manager.currentUser().friends)
+                        if (friend.name.contains(search.getText()))
                             searchedFriends.add(friend);
                     getContentPane().removeAll();
                     mainPanel = usersPanel(searchedFriends.toArray(new User[0]));
@@ -86,6 +84,7 @@ public class ChatLists extends GameFrame {
                     repaint();
                 }
             }
+
             @Override
             public void keyReleased(KeyEvent e) {/**/}
         });

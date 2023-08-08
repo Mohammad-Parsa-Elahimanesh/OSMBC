@@ -35,8 +35,6 @@ public class SignInPage extends GameFrame {
     JButton enterButton() {
         JButton enterButton = Tools.tileButton(10, 9, 4, 1, "Sign In");
         enterButton.addActionListener(e -> {
-            if (Manager.isConnected())
-                Request.users();
             for (User user : User.getUsers())
                 if (user.name.equals(userName.getText())) {
                     if (user.password == password.getText().hashCode()) {

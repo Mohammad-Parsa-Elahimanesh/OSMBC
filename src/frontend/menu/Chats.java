@@ -14,7 +14,6 @@ public class Chats extends JScrollPane {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         setViewportView(panel);
         setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
     }
 
     public void updateChatScrollPane(SMS[] chats) {

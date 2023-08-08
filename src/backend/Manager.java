@@ -5,7 +5,11 @@ import backend.network.request.Request;
 import backend.offline.block.mario.Mario;
 import backend.offline.game_play.Game;
 import backend.offline.game_play.Section;
+import backend.online.SMS;
+import frontend.menu.pv_chat.PV;
+import frontend.notification.Notification;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
@@ -23,6 +27,17 @@ public class Manager {
     public static final Font PROFILE_RECORD_FONT = new Font("Arial", Font.PLAIN, 20);
     public static Point location;
     public static Connection connection;
+    private static SMS lastSMS = null;
+    public static Timer updater = new Timer(2000, e -> {
+        Request.users();
+        if (currentUser() != null && (currentUser().friends.length > 0)) {
+            SMS[] smsEs = Request.getMassages(currentUser().friends[0]);
+            if (smsEs.length > 0 && !smsEs[smsEs.length - 1].equals(lastSMS) && smsEs[smsEs.length-1].user != currentUser()) {
+                lastSMS = smsEs[smsEs.length - 1];
+                new Notification("New massage", lastSMS.user.name + " just send you new massage\n" + lastSMS.text.substring(0, Math.min(40, lastSMS.text.length())), () -> new PV(lastSMS.user));
+            }
+        }
+    });
 
     private Manager() {
     }
@@ -55,12 +70,13 @@ public class Manager {
         if (isConnected()) return true;
         for (int i = 0; i < 5; i++) {
             try {
-                sleep(2000);
+                sleep(1500);
                 connection = new Connection();
-                Request.users();
+                updater.start();
                 return true;
             } catch (IOException e) {
                 connection = null;
+                updater.stop();
             }
         }
         return false;

@@ -31,22 +31,8 @@ public class Section {
     private int wholeTime;
     private Section nextSection;
     private double spentTime = 0;
-    private int coins = 0;    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
-        Manager.currentGame().offlineGameFrame.repaint();
-        Manager.currentSection().update();
-    }) {
-        @Override
-        public void start() {
-            super.start();
-            AudioPlayer.setSilence(false);
-        }
+    private int coins = 0;
 
-        @Override
-        public void stop() {
-            super.stop();
-            AudioPlayer.setSilence(true);
-        }
-    };
     Section(int section, Mario mario, String name) throws Exception {
         this.name = name;
         add(new Brick(1, 30, -1, 0));
@@ -97,7 +83,22 @@ public class Section {
 
     public double getWholeTime() {
         return wholeTime;
-    }
+    }    public Timer timer = new Timer((int) (DELAY * 1000), e -> {
+        Manager.currentGame().offlineGameFrame.repaint();
+        Manager.currentSection().update();
+    }) {
+        @Override
+        public void start() {
+            super.start();
+            AudioPlayer.setSilence(false);
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            AudioPlayer.setSilence(true);
+        }
+    };
 
     public double getSpentTime() {
         return spentTime;
