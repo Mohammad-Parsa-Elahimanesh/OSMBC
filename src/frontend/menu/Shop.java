@@ -1,10 +1,14 @@
 package frontend.menu;
 
+import backend.Manager;
 import backend.network.request.Request;
 import frontend.GameFrame;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Shop extends GameFrame {
     Timer timer;
@@ -13,9 +17,9 @@ public class Shop extends GameFrame {
     public Shop() {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setUndecorated(false);
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(BorderLayout.WEST, gemCoinPanel());
-        getContentPane().add(BorderLayout.EAST, itemsPanel());
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
+        getContentPane().add(gemCoinPanel());
+        getContentPane().add(itemsPanel());
         setVisible(true);
     }
 
@@ -54,7 +58,28 @@ public class Shop extends GameFrame {
     }
 
     JPanel itemsPanel() {
+        JPanel panel = new JPanel(new GridLayout(2,5));
+        for(int i = 0; i < 10; i++) {
+            JButton button = new JButton();
 
-        return new JPanel();
+            try {
+                Image background = ImageIO.read(new File("Images\\"+Manager.items[i][1]));
+                button.setIcon(new ImageIcon(background));
+            } catch (IOException e) {/**/}
+            button.setPreferredSize(new Dimension(120,50));
+            button.setMaximumSize(new Dimension(120,50));
+            button.setSize(new Dimension(120,50));
+            button.setToolTipText("<html>"+Manager.items[i][0]+"<br>"+ split(Manager.items[i][2])+"</html>");
+            panel.add(button);
+        }
+
+        return panel;
+    }
+    private String split(String s) {
+        String[] sp = s.split("   ");
+        StringBuilder rs = new StringBuilder(sp[0]);
+        for(int i = 1; i < sp.length; i++)
+            rs.append("<br>").append(sp[i]);
+        return rs.toString();
     }
 }
