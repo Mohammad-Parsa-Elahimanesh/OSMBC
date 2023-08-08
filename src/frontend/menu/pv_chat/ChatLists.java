@@ -5,6 +5,8 @@ import backend.User;
 import backend.network.request.Request;
 import frontend.GameFrame;
 import frontend.menu.MainMenu;
+import frontend.notification.Notification;
+import frontend.notification.NotificationType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,7 +42,12 @@ public class ChatLists extends GameFrame {
         JPanel userPanel = new JPanel(new GridLayout(1, 3));
 
         JButton button = new JButton(user.name);
-        button.addActionListener(e -> new PV(user));
+        button.addActionListener(e -> {
+            if(Manager.isConnected())
+                new PV(user);
+            else
+                Notification.notice(NotificationType.ONLINE_ACCESS);
+        });
         userPanel.add(button);
 
         String[] bs = {"Block", "Unblock"};

@@ -80,24 +80,30 @@ public class RoomFrame extends GameFrame {
     }
 
     JPanel userRoom(User user) {
-        JPanel userButtons = new JPanel(new GridLayout(1, 4));
+        JPanel userButtons = new JPanel();
+        userButtons.setLayout(new BoxLayout(userButtons, BoxLayout.X_AXIS));
         userButtons.setBackground(user.color());
 
         JLabel nameLabel = new JLabel(user.name + " " + room.getAccessLevel(user));
         userButtons.add(nameLabel);
 
-        JButton sendFriendRequest = new JButton("Friend Request");
+        JButton sendFriendRequest = new JButton("Be friend");
         sendFriendRequest.addActionListener(e -> Request.toBeFriend(user));
         userButtons.add(sendFriendRequest);
 
-        JButton setManager = new JButton("Set Manager");
-        setManager.addActionListener(e -> Request.setManager(user));
-        userButtons.add(setManager);
+        if(room.getAccessLevel(Manager.currentUser()) != AccessLevel.USER) {
+            JButton setManager = new JButton("Set Manager");
+            setManager.addActionListener(e -> Request.setManager(user));
+            userButtons.add(setManager);
 
-        JButton kick = new JButton("Kick");
-        kick.addActionListener(e -> Request.kick(user));
-        userButtons.add(kick);
+            JButton block = new JButton("Block");
+            block.addActionListener(e -> Request.roomBlock(user));
+            userButtons.add(block);
 
+            JButton kick = new JButton("Kick");
+            kick.addActionListener(e -> Request.kick(user));
+            userButtons.add(kick);
+        }
         return userButtons;
     }
 

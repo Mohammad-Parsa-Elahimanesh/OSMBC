@@ -4,6 +4,8 @@ import backend.online.SMS;
 import frontend.Tools;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Chats extends JScrollPane {
     static final int LINE_CAP = 30;
@@ -25,6 +27,7 @@ public class Chats extends JScrollPane {
     }
 
     JLabel smsShower(SMS sms) {
+        boolean hide = sms.text.contains("#Block");
         String[] lines = new String[5];
         lines[0] = sms.user.name + " :    ";
         StringBuilder msg = new StringBuilder(sms.text);
@@ -38,7 +41,16 @@ public class Chats extends JScrollPane {
                 text.append(" <br> ");
         }
         text.append("</html>");
-        JLabel smsLabel = Tools.tileLabel(0, 0, 8, 4, text.toString());
+        JLabel smsLabel = Tools.tileLabel(0, 0, 8, 4, hide?"click on content to be visible":text.toString());
+        smsLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    smsLabel.setText(text.toString());
+                    smsLabel.repaint();
+                }
+            }
+        });
         smsLabel.setBackground(sms.user.color());
         smsLabel.setOpaque(true);
         return smsLabel;

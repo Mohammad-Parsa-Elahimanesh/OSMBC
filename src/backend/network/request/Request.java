@@ -114,6 +114,9 @@ public class Request {
     public static void kick(User user) {
         Manager.connection.send(RequestType.KICK + " " + user.name);
     }
+    public static void roomBlock(User user) {
+        Manager.connection.send(RequestType.ROOM_BLOCK+" "+user.name);
+    }
 
     public static void openRoom() {
         Manager.connection.send(RequestType.OPEN_ROOM);
